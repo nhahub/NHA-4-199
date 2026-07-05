@@ -12,7 +12,7 @@ namespace HRManagementSystem.Controllers
         {
             _logger = logger;
         }
-
+        //dnhlkn
         public IActionResult Index()
         {
             return View();
