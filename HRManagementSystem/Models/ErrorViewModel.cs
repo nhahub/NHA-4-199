@@ -6,10 +6,6 @@ namespace HRManagementSystem.Models
 
         public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
 
-        public ErrorViewModel()
-        {
-            // A7A
-        }
 
     }
     
