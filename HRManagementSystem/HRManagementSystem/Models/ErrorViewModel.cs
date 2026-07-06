@@ -1,4 +1,4 @@
-namespace HRManagementSystem.Models
+﻿namespace HRManagementSystem.Models
 {
     public class ErrorViewModel
     {
@@ -7,8 +7,5 @@ namespace HRManagementSystem.Models
         public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
 
     }
-    
+
 }
-
-
-
