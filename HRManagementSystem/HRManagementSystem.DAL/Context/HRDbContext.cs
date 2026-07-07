@@ -12,12 +12,13 @@ using System.Threading.Tasks;
 
 namespace HRManagementSystem
 {
-    internal class HRDbContext : DbContext
+    public class HRDbContext : DbContext
     {
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public HRDbContext(DbContextOptions<HRDbContext> options)
+        : base(options)
         {
-            optionsBuilder.UseSqlServer("Data Source=DESKTOP-UNL1S0G\\SQLEXPRESS;Initial Catalog=HR;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
         }
+  
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
