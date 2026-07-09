@@ -3,10 +3,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace HRManagementSystem.Migrations
+namespace HRManagementSystem.DAL.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate27_6 : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -15,43 +15,24 @@ namespace HRManagementSystem.Migrations
                 name: "dbo");
 
             migrationBuilder.CreateTable(
-                name: "CandidateInfo",
-                schema: "dbo",
+                name: "Persons",
                 columns: table => new
                 {
-                    CandidateId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CandidateFirstName = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false),
-                    CandidateLastName = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false),
-                    CandidateEmail = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false),
-                    CandidatePhone = table.Column<string>(type: "varchar(20)", maxLength: 20, nullable: false),
-                    CandidateResume = table.Column<string>(type: "varchar(200)", maxLength: 200, nullable: false),
-                    CandidateJopRequisition = table.Column<string>(type: "varchar(200)", maxLength: 200, nullable: false),
+                    FirstName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    Phone = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
+                    DateOfBirth = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Gender = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CandidateInfo", x => x.CandidateId);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "CorrectionRequestInfo",
-                columns: table => new
-                {
-                    CorrectionRequestID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    AttendanceID = table.Column<int>(type: "int", nullable: false),
-                    CorrectionRequestCheckIN = table.Column<DateTime>(name: "CorrectionRequest CheckIN", type: "Date", nullable: true),
-                    CorrectionRequestCheckOut = table.Column<DateTime>(name: "CorrectionRequest CheckOut", type: "Date", nullable: true),
-                    CorrectionRequestReason = table.Column<string>(name: "CorrectionRequest Reason", type: "varchar(500)", maxLength: 500, nullable: false),
-                    CorrectionRequestStatus = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_CorrectionRequestInfo", x => x.CorrectionRequestID);
+                    table.PrimaryKey("PK_Persons", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -72,6 +53,29 @@ namespace HRManagementSystem.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_WorkShiftInfo", x => x.WorkShiftID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CandidateInfo",
+                schema: "dbo",
+                columns: table => new
+                {
+                    CandidateId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CandidateResume = table.Column<string>(type: "varchar(200)", maxLength: 200, nullable: false),
+                    PersonID = table.Column<int>(type: "int", nullable: false),
+                    CandidateJopRequisition = table.Column<string>(type: "varchar(200)", maxLength: 200, nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CandidateInfo", x => x.CandidateId);
+                    table.ForeignKey(
+                        name: "FK_CandidateInfo_Persons_PersonID",
+                        column: x => x.PersonID,
+                        principalTable: "Persons",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -134,7 +138,7 @@ namespace HRManagementSystem.Migrations
                     DepartmentID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "10, 10"),
                     DepartmentName = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false),
-                    DepartmentDescription = table.Column<string>(type: "varchar(500)", maxLength: 500, nullable: false),
+                    DepartmentDescription = table.Column<string>(type: "varchar(500)", maxLength: 500, nullable: true),
                     DepartmentMangr = table.Column<int>(type: "int", nullable: false),
                     CountOfDepartmentEmployee = table.Column<int>(type: "int", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -152,20 +156,14 @@ namespace HRManagementSystem.Migrations
                 {
                     EmployeeID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "10, 10"),
-                    EmployeeFirstName = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false),
-                    EmployeeLastName = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false),
-                    EmployeeDateBirth = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    EmployeeGender = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
                     EmployeeHirDate = table.Column<DateTime>(type: "Date", nullable: false),
                     EmployeeEFF_Start = table.Column<DateTime>(type: "Date", nullable: false),
                     EmployeeEFF_End = table.Column<DateTime>(type: "Date", nullable: false),
-                    EmployeeEmail = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false),
-                    EmployeePhone = table.Column<string>(type: "varchar(20)", maxLength: 20, nullable: true),
-                    EmployeeAdress = table.Column<string>(type: "varchar(200)", maxLength: 200, nullable: false),
-                    EmployeeBaseSalary = table.Column<decimal>(type: "Decimal(18,0)", maxLength: 100, nullable: false),
+                    EmployeeBaseSalary = table.Column<decimal>(type: "Decimal(18,2)", nullable: false),
                     employeeAplication = table.Column<string>(type: "varchar(200)", maxLength: 200, nullable: false),
-                    EmployeeDepartment = table.Column<int>(type: "int", maxLength: 100, nullable: false),
-                    EmployeeManger = table.Column<int>(type: "int", maxLength: 100, nullable: false),
+                    PersonID = table.Column<int>(type: "int", nullable: false),
+                    EmployeeDepartment = table.Column<int>(type: "int", nullable: false),
+                    EmployeeManger = table.Column<int>(type: "int", nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
@@ -181,6 +179,85 @@ namespace HRManagementSystem.Migrations
                     table.ForeignKey(
                         name: "FK_EmployeesInfo_EmployeesInfo_EmployeeManger",
                         column: x => x.EmployeeManger,
+                        principalSchema: "dbo",
+                        principalTable: "EmployeesInfo",
+                        principalColumn: "EmployeeID");
+                    table.ForeignKey(
+                        name: "FK_EmployeesInfo_Persons_PersonID",
+                        column: x => x.PersonID,
+                        principalTable: "Persons",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "HiringHistoryInfo",
+                schema: "dbo",
+                columns: table => new
+                {
+                    HiringHistoryID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ApplicationId = table.Column<int>(type: "int", nullable: false),
+                    EmployeeId = table.Column<int>(type: "int", nullable: false),
+                    ApprovedByEmployeeId = table.Column<int>(type: "int", nullable: false),
+                    ApprovedDate = table.Column<DateTime>(type: "datetime", nullable: false),
+                    Decision = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Notes = table.Column<string>(type: "varchar(500)", maxLength: 500, nullable: true),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_HiringHistoryInfo", x => x.HiringHistoryID);
+                    table.ForeignKey(
+                        name: "FK_HiringHistoryInfo_ApplicationInfo_ApplicationId",
+                        column: x => x.ApplicationId,
+                        principalSchema: "dbo",
+                        principalTable: "ApplicationInfo",
+                        principalColumn: "ApplicationID");
+                    table.ForeignKey(
+                        name: "FK_HiringHistoryInfo_EmployeesInfo_ApprovedByEmployeeId",
+                        column: x => x.ApprovedByEmployeeId,
+                        principalSchema: "dbo",
+                        principalTable: "EmployeesInfo",
+                        principalColumn: "EmployeeID");
+                    table.ForeignKey(
+                        name: "FK_HiringHistoryInfo_EmployeesInfo_EmployeeId",
+                        column: x => x.EmployeeId,
+                        principalSchema: "dbo",
+                        principalTable: "EmployeesInfo",
+                        principalColumn: "EmployeeID");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "InterviewInfo",
+                schema: "dbo",
+                columns: table => new
+                {
+                    InterviewID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ApplicationId = table.Column<int>(type: "int", nullable: false),
+                    InterviewerEmployeeId = table.Column<int>(type: "int", nullable: false),
+                    InterviewRound = table.Column<int>(type: "int", nullable: false),
+                    InterviewType = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    InterviewDate = table.Column<DateTime>(type: "datetime", nullable: false),
+                    InterviewResult = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    InterviewNotes = table.Column<string>(type: "varchar(500)", maxLength: 500, nullable: true),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_InterviewInfo", x => x.InterviewID);
+                    table.ForeignKey(
+                        name: "FK_InterviewInfo_ApplicationInfo_ApplicationId",
+                        column: x => x.ApplicationId,
+                        principalSchema: "dbo",
+                        principalTable: "ApplicationInfo",
+                        principalColumn: "ApplicationID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_InterviewInfo_EmployeesInfo_InterviewerEmployeeId",
+                        column: x => x.InterviewerEmployeeId,
                         principalSchema: "dbo",
                         principalTable: "EmployeesInfo",
                         principalColumn: "EmployeeID");
@@ -205,11 +282,18 @@ namespace HRManagementSystem.Migrations
                 {
                     table.PrimaryKey("PK_JobRequisitionInfo", x => x.JobRequisitionId);
                     table.ForeignKey(
+                        name: "FK_JobRequisitionInfo_DepartmentInfo_DepartmentID",
+                        column: x => x.DepartmentID,
+                        principalSchema: "dbo",
+                        principalTable: "DepartmentInfo",
+                        principalColumn: "DepartmentID");
+                    table.ForeignKey(
                         name: "FK_JobRequisitionInfo_EmployeesInfo_EmployeeID",
                         column: x => x.EmployeeID,
                         principalSchema: "dbo",
                         principalTable: "EmployeesInfo",
-                        principalColumn: "EmployeeID");
+                        principalColumn: "EmployeeID",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -292,6 +376,13 @@ namespace HRManagementSystem.Migrations
                 column: "ShiftID");
 
             migrationBuilder.CreateIndex(
+                name: "IX_CandidateInfo_PersonID",
+                schema: "dbo",
+                table: "CandidateInfo",
+                column: "PersonID",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_DepartmentInfo_DepartmentMangr",
                 schema: "dbo",
                 table: "DepartmentInfo",
@@ -311,6 +402,49 @@ namespace HRManagementSystem.Migrations
                 column: "EmployeeManger");
 
             migrationBuilder.CreateIndex(
+                name: "IX_EmployeesInfo_PersonID",
+                schema: "dbo",
+                table: "EmployeesInfo",
+                column: "PersonID",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_HiringHistoryInfo_ApplicationId",
+                schema: "dbo",
+                table: "HiringHistoryInfo",
+                column: "ApplicationId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_HiringHistoryInfo_ApprovedByEmployeeId",
+                schema: "dbo",
+                table: "HiringHistoryInfo",
+                column: "ApprovedByEmployeeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_HiringHistoryInfo_EmployeeId",
+                schema: "dbo",
+                table: "HiringHistoryInfo",
+                column: "EmployeeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_InterviewInfo_ApplicationId",
+                schema: "dbo",
+                table: "InterviewInfo",
+                column: "ApplicationId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_InterviewInfo_InterviewerEmployeeId",
+                schema: "dbo",
+                table: "InterviewInfo",
+                column: "InterviewerEmployeeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_JobRequisitionInfo_DepartmentID",
+                table: "JobRequisitionInfo",
+                column: "DepartmentID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_JobRequisitionInfo_EmployeeID",
                 table: "JobRequisitionInfo",
                 column: "EmployeeID");
@@ -325,6 +459,12 @@ namespace HRManagementSystem.Migrations
                 schema: "dbo",
                 table: "PayrollInfo",
                 column: "EmployeeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Persons_Email",
+                table: "Persons",
+                column: "Email",
+                unique: true);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_ApplicationInfo_JobRequisitionInfo_RequisitionID",
@@ -361,20 +501,28 @@ namespace HRManagementSystem.Migrations
                 table: "DepartmentInfo");
 
             migrationBuilder.DropTable(
-                name: "ApplicationInfo",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
                 name: "AttendanceInfo");
 
             migrationBuilder.DropTable(
-                name: "CorrectionRequestInfo");
+                name: "HiringHistoryInfo",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "InterviewInfo",
+                schema: "dbo");
 
             migrationBuilder.DropTable(
                 name: "LeaveRequestInfo");
 
             migrationBuilder.DropTable(
                 name: "PayrollInfo",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "WorkShiftInfo");
+
+            migrationBuilder.DropTable(
+                name: "ApplicationInfo",
                 schema: "dbo");
 
             migrationBuilder.DropTable(
@@ -385,15 +533,15 @@ namespace HRManagementSystem.Migrations
                 name: "JobRequisitionInfo");
 
             migrationBuilder.DropTable(
-                name: "WorkShiftInfo");
-
-            migrationBuilder.DropTable(
                 name: "EmployeesInfo",
                 schema: "dbo");
 
             migrationBuilder.DropTable(
                 name: "DepartmentInfo",
                 schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "Persons");
         }
     }
 }

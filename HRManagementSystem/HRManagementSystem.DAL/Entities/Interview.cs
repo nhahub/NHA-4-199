@@ -5,29 +5,31 @@ using System.Text;
 using System.Threading.Tasks;
 
 using HRManagementSystem.Enums;
-using HRManagementSystem.Models;
+using HRManagementSystem.DAL.Entities;
 
-namespace HRManagementSystemMSConsole.Models;
-
-public class Interview : BaseEntity
+namespace HRManagementSystem.DAL.Entities
 {
-    public int ApplicationId { get; set; }
 
-    public int InterviewerEmployeeId { get; set; }
+    public class Interview : BaseEntity
+    {
+        public int ApplicationId { get; set; }
 
-    public int RoundNumber { get; set; }
+        public int InterviewerEmployeeId { get; set; }
 
-    public InterviewType InterviewType { get; set; }
+        public int RoundNumber { get; set; }
 
-    public DateTime InterviewDate { get; set; }
+        public InterviewType InterviewType { get; set; }
 
-    public InterviewResult Result { get; set; }
+        public DateTime InterviewDate { get; set; }
 
-    public string? Notes { get; set; }
+        public InterviewResult Result { get; set; }
 
-    // Navigation Properties
+        public string? Notes { get; set; }
 
-    public Application? Application { get; set; }
+        // Navigation Properties
 
-    public Employee? Interviewer { get; set; }
+        public Application? Application { get; set; }
+
+        public Employee? Interviewer { get; set; }
+    }
 }

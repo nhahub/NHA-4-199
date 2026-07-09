@@ -1,7 +1,5 @@
 ﻿using HRManagementSystem.Configurations;
-using HRManagementSystem.Models;
-using HRManagementSystemMS01.Models;
-using HRManagementSystemMSConsole.Models;
+using HRManagementSystem.DAL.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -10,7 +8,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HRManagementSystem
+namespace HRManagementSystem.DAL.Context
 {
     public class HRDbContext : DbContext
     {

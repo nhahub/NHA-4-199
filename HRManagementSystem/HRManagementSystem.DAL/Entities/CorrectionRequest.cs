@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using HRManagementSystem.Models;
+using HRManagementSystem.DAL.Entities;
 
 public class CorrectionRequest : BaseEntity
 {

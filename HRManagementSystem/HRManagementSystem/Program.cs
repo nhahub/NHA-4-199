@@ -1,5 +1,14 @@
+using FluentValidation;
+using FluentValidation.AspNetCore;
+using HRManagementSystem.BLL.BusinessRules;
+using HRManagementSystem.BLL.BusinessRules.Interfaces;
+using HRManagementSystem.BLL.Interfaces;
+using HRManagementSystem.BLL.Services;
+using HRManagementSystem.BLL.Validators;
+using HRManagementSystem.DAL.Context;
+using HRManagementSystem.DAL.Repositories;
+using HRManagementSystem.DAL.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using HRManagementSystem;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +20,26 @@ builder.Services.AddDbContext<HRDbContext>(options =>
     options.UseSqlServer(
         builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+builder.Services.AddScoped<IDepartmentBusinessRules, DepartmentBusinessRules>();
+
+builder.Services.AddScoped<IDepartmentService, DepartmentService>();
+
+builder.Services
+    .AddControllersWithViews()
+    .AddFluentValidation(fv =>
+    {
+        fv.RegisterValidatorsFromAssemblyContaining<CreateDepartmentValidator>();
+    });
+
+builder.Services.AddScoped<IEmployeeService, EmployeeService>();
+
+
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

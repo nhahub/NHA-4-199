@@ -1,6 +1,5 @@
-using HRManagementSystem.Models;
+using HRManagementSystem.DAL.Entities;
 
-namespace HRManagementSystemMSConsole.Models;
 
 public class Candidate : BaseEntity
 {
