@@ -37,8 +37,8 @@ builder.Services
 
 builder.Services.AddScoped<IEmployeeService, EmployeeService>();
 
-
-
+builder.Services.AddScoped<IPersonBusinessRules, PersonBusinessRules>();
+builder.Services.AddScoped<IPersonService, PersonService>();
 
 var app = builder.Build();
 

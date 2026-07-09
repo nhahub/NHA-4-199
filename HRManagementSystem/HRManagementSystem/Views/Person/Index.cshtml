@@ -1,0 +1,67 @@
+﻿@model IEnumerable<HRManagementSystem.BLL.DTOs.PersonDto>
+
+@{
+    ViewData["Title"] = "Persons";
+}
+
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>Persons</h2>
+
+        <a asp-action="Create" class="btn btn-success">
+            Add Person
+        </a>
+    </div>
+
+    <table class="table table-bordered table-hover">
+
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Full Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Gender</th>
+                <th width="220">Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            @foreach (var person in Model)
+            {
+                <tr>
+                    <td>@person.Id</td>
+                    <td>@person.FirstName @person.LastName</td>
+                    <td>@person.Email</td>
+                    <td>@person.Phone</td>
+                    <td>@person.Gender</td>
+
+                    <td>
+                        <a asp-action="Details"
+                           asp-route-id="@person.Id"
+                           class="btn btn-info btn-sm">
+                            Details
+                        </a>
+
+                        <a asp-action="Edit"
+                           asp-route-id="@person.Id"
+                           class="btn btn-warning btn-sm">
+                            Edit
+                        </a>
+
+                        <a asp-action="Delete"
+                           asp-route-id="@person.Id"
+                           class="btn btn-danger btn-sm">
+                            Delete
+                        </a>
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+
+    </table>
+
+</div>
