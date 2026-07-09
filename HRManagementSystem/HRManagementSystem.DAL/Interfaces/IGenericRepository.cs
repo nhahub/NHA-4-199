@@ -25,4 +25,6 @@ public interface IGenericRepository<TEntity>
     void Delete(TEntity entity);
 
     Task<bool> AnyAsync(Expression<Func<TEntity, bool>> predicate);
+
+
 }

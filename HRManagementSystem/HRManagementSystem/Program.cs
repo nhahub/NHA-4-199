@@ -42,6 +42,11 @@ builder.Services.AddScoped<IPersonService, PersonService>();
 builder.Services.AddScoped<ICandidateBusinessRules, CandidateBusinessRules>();
 builder.Services.AddScoped<ICandidateService, CandidateService>();
 
+builder.Services.AddScoped<IApplicationBusinessRules, ApplicationBusinessRules>();
+builder.Services.AddScoped<IApplicationService, ApplicationService>();
+
+builder.Services.AddScoped<IJobRequisitionBusinessRules, JobRequisitionBusinessRules>();
+builder.Services.AddScoped<IJobRequisitionService, JobRequisitionService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

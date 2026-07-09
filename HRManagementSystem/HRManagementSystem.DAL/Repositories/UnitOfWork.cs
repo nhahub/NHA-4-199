@@ -16,8 +16,8 @@ public class UnitOfWork : IUnitOfWork
 
     public IEmployeeRepository Employees { get; }
     public IGenericRepository<Department> Departments { get; }
-    public IGenericRepository<Candidate> Candidates { get; }
-    public IGenericRepository<Application> Applications { get; }
+    public ICandidateRepository Candidates { get; }
+    public IApplicationRepository Applications { get; }
     public IGenericRepository<JobRequisition> JobRequisitions { get; }
     public IGenericRepository<Attendance> Attendances { get; }
     public IGenericRepository<Payroll> Payrolls { get; }
@@ -33,8 +33,8 @@ public class UnitOfWork : IUnitOfWork
 
         Employees = new EmployeeRepository(_context);
         Departments = new GenericRepository<Department>(_context);
-        Candidates = new GenericRepository<Candidate>(_context);
-        Applications = new GenericRepository<Application>(_context);
+        Candidates = new CandidateRepository(_context);
+        Applications = new ApplicationRepository(_context);
         JobRequisitions = new GenericRepository<JobRequisition>(_context);
         Attendances = new GenericRepository<Attendance>(_context);
         Payrolls = new GenericRepository<Payroll>(_context);

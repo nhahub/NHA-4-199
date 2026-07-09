@@ -12,8 +12,8 @@ public interface IUnitOfWork : IDisposable
 {
     IEmployeeRepository Employees { get; }
     IGenericRepository<Department> Departments { get; }
-    IGenericRepository<Candidate> Candidates { get; }
-    IGenericRepository<Application> Applications { get; }
+    ICandidateRepository Candidates { get; }
+    IApplicationRepository Applications { get; }
     IGenericRepository<JobRequisition> JobRequisitions { get; }
     IGenericRepository<Attendance> Attendances { get; }
     IGenericRepository<Payroll> Payrolls { get; }

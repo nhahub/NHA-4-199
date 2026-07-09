@@ -1,0 +1,85 @@
+﻿@model HRManagementSystem.ViewModels.JobRequisition.UpdateJobRequisitionViewModel
+
+@using HRManagementSystem.Enums
+
+@{
+    ViewData["Title"] = "Edit Job Requisition";
+}
+
+<div class="container mt-4">
+
+    <div class="card shadow">
+
+        <div class="card-header">
+            <h3>Edit Job Requisition</h3>
+        </div>
+
+        <div class="card-body">
+
+            <form asp-action="Edit" method="post">
+
+                <input asp-for="Id" type="hidden" />
+
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                <div class="mb-3">
+                    <label asp-for="EmployeeID" class="form-label"></label>
+                    <input asp-for="EmployeeID" class="form-control" />
+                    <span asp-validation-for="EmployeeID" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="DepartmentID" class="form-label"></label>
+                    <input asp-for="DepartmentID" class="form-control" />
+                    <span asp-validation-for="DepartmentID" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Title" class="form-label"></label>
+                    <input asp-for="Title" class="form-control" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Description" class="form-label"></label>
+                    <textarea asp-for="Description" rows="4" class="form-control"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Headcount" class="form-label"></label>
+                    <input asp-for="Headcount" class="form-control" />
+                    <span asp-validation-for="Headcount" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Status" class="form-label"></label>
+
+                    <select asp-for="Status"
+                            asp-items="Html.GetEnumSelectList<JobRequisitionStatus>()"
+                            class="form-select">
+                    </select>
+
+                    <span asp-validation-for="Status" class="text-danger"></span>
+                </div>
+
+                <button type="submit" class="btn btn-primary">
+                    Update
+                </button>
+
+                <a asp-action="Index" class="btn btn-secondary">
+                    Back
+                </a>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+@section Scripts
+{
+    <partial name="_ValidationScriptsPartial" />
+}

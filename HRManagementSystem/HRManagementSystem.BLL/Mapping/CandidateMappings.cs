@@ -17,6 +17,7 @@ public static class CandidateMappings
         {
             Id = candidate.Id,
             PersonId = candidate.PersonId,
+            PersonName = $"{candidate.Person!.FirstName} {candidate.Person.LastName}",
             ResumeLink = candidate.ResumeLink,
             JobRequisition = candidate.JobRequisition
         };

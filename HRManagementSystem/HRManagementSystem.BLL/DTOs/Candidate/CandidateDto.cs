@@ -12,6 +12,8 @@ public class CandidateDto
 
     public int PersonId { get; set; }
 
+    public string PersonName { get; set; } = string.Empty;
+
     public string ResumeLink { get; set; } = string.Empty;
 
     public string JobRequisition { get; set; } = string.Empty;

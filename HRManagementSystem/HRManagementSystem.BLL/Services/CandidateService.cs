@@ -27,14 +27,14 @@ public class CandidateService : ICandidateService
 
     public async Task<IEnumerable<CandidateDto>> GetAllAsync()
     {
-        var candidates = await _unitOfWork.Candidates.GetAllAsync();
+        var candidates = await _unitOfWork.Candidates.GetAllWithPersonAsync();
 
         return candidates.Select(c => c.ToDto());
     }
 
     public async Task<CandidateDto?> GetByIdAsync(int id)
     {
-        var candidate = await _unitOfWork.Candidates.GetByIdAsync(id);
+        var candidate = await _unitOfWork.Candidates.GetByIdWithPersonAsync(id);
 
         return candidate?.ToDto();
     }
