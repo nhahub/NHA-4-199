@@ -8,7 +8,6 @@ public class Candidate : BaseEntity
     public int PersonId { get; set; }
     public string JobRequisition { get; set; } = string.Empty;
 
-    //Navigation Properties
 
     public ICollection<Application> Applications { get; set; } = new List<Application>();
     public Person Person { get; set; }

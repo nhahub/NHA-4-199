@@ -1,5 +1,7 @@
-using Microsoft.EntityFrameworkCore;
 using HRManagementSystem;
+using HRManagementSystem.DAL.Entities;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,7 +13,21 @@ builder.Services.AddDbContext<HRDbContext>(options =>
     options.UseSqlServer(
         builder.Configuration.GetConnectionString("DefaultConnection"));
 });
-var app = builder.Build();
+
+
+builder.Services
+    .AddIdentity<ApplicationUser, ApplicationRole>(options =>
+    {
+        options.Password.RequireDigit = true;
+        options.Password.RequireUppercase = true;
+        options.Password.RequireLowercase = true;
+        options.Password.RequireNonAlphanumeric = true;
+        options.Password.RequiredLength = 8;
+
+        options.User.RequireUniqueEmail = true;
+    })
+    .AddEntityFrameworkStores<HRDbContext>()
+    .AddDefaultTokenProviders(); var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

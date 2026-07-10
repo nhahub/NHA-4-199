@@ -1,3 +1,4 @@
+using HRManagementSystem.DAL.Entities;
 using HRManagementSystem.Enums;
 using HRManagementSystem.Models;
 using HRManagementSystemMS01.Models;
@@ -41,4 +42,6 @@ public class Employee : BaseEntity
 
     // ??? ????? ?????? ????
     public ICollection<HiringHistory> EmployeeHiringHistories { get; set; } = new List<HiringHistory>();
+    public virtual ApplicationUser? User { get; set; }
+
 }
