@@ -1,0 +1,78 @@
+﻿@model HRManagementSystem.ViewModels.Candidate.CreateCandidateViewModel
+
+@{
+    ViewData["Title"] = "Create Candidate";
+}
+
+<div class="container mt-4">
+
+    <div class="card shadow">
+
+        <div class="card-header">
+            <h3>Create Candidate</h3>
+        </div>
+
+        <div class="card-body">
+
+            <form asp-action="Create" method="post">
+
+                <div asp-validation-summary="ModelOnly"
+                     class="text-danger mb-3"></div>
+
+                <div class="mb-3">
+
+                    <label asp-for="PersonId"></label>
+
+                    <input asp-for="PersonId"
+                           class="form-control" />
+
+                    <span asp-validation-for="PersonId"
+                          class="text-danger"></span>
+
+                </div>
+
+                <div class="mb-3">
+
+                    <label asp-for="ResumeLink"></label>
+
+                    <input asp-for="ResumeLink"
+                           class="form-control" />
+
+                    <span asp-validation-for="ResumeLink"
+                          class="text-danger"></span>
+
+                </div>
+
+                <div class="mb-3">
+
+                    <label asp-for="JobRequisition"></label>
+
+                    <input asp-for="JobRequisition"
+                           class="form-control" />
+
+                    <span asp-validation-for="JobRequisition"
+                          class="text-danger"></span>
+
+                </div>
+
+                <button class="btn btn-primary">
+                    Save
+                </button>
+
+                <a asp-action="Index"
+                   class="btn btn-secondary">
+                    Back
+                </a>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+@section Scripts
+{
+    <partial name="_ValidationScriptsPartial" />
+}

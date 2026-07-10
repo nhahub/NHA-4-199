@@ -1,5 +1,5 @@
 
-using HRManagementSystem.Models;
+using HRManagementSystem.DAL.Entities;
 
 public class Attendance : BaseEntity
 {

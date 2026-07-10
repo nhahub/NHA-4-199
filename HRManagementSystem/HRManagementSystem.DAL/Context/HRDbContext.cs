@@ -1,4 +1,6 @@
-﻿using HRManagementSystem.DAL.Entities;
+﻿using HRManagementSystem.Configurations;
+using HRManagementSystem.DAL.Entities;
+using HRManagementSystem.DAL.Entities;
 using HRManagementSystem.Models;
 using HRManagementSystemMS01.Models;
 using HRManagementSystemMSConsole.Models;
@@ -6,7 +8,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
-namespace HRManagementSystem
+namespace HRManagementSystem.DAL.Context
 {
     public class HRDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, string>
     {

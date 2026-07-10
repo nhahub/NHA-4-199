@@ -1,21 +1,22 @@
 using HRManagementSystem.Enums;
-using HRManagementSystem.Models;
+using HRManagementSystem.DAL.Entities;
 
-namespace HRManagementSystemMSConsole.Models;
-
-public class Application : BaseEntity
+namespace HRManagementSystem.DAL.Entities
 {
-    public DateTime Date { get; set; }
-    public AplicationStatus Status { get; set; }
-    public JopStage Stage { get; set; } 
-    public int CandidateID { get; set; }
-    public int RequisitionID { get; set; }
+    public class Application : BaseEntity
+    {
+        public DateTime Date { get; set; }
+        public AplicationStatus Status { get; set; }
+        public JopStage Stage { get; set; }
+        public int CandidateID { get; set; }
+        public int RequisitionID { get; set; }
 
-    //Navigation Properties
+        //Navigation Properties
 
-    public Candidate? Candidate { get; set; }
+        public Candidate? Candidate { get; set; }
 
-    public JobRequisition? JobRequisition { get; set; }
-    public ICollection<Interview> Interviews { get; set; } = new List<Interview>();
-    public HiringHistory? HiringHistory { get; set; }
+        public JobRequisition? JobRequisition { get; set; }
+        public ICollection<Interview> Interviews { get; set; } = new List<Interview>();
+        public HiringHistory? HiringHistory { get; set; }
+    }
 }

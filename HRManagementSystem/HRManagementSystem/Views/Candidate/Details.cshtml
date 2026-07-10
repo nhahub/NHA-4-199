@@ -1,0 +1,49 @@
+﻿@model HRManagementSystem.BLL.DTOs.CandidateDto
+
+@{
+    ViewData["Title"] = "Candidate Details";
+}
+
+<div class="container mt-4">
+
+    <div class="card shadow">
+
+        <div class="card-header">
+            <h3>Candidate Details</h3>
+        </div>
+
+        <div class="card-body">
+
+            <dl class="row">
+
+                <dt class="col-sm-3">Person ID</dt>
+                <dd class="col-sm-9">@Model.PersonId</dd>
+
+                <dt class="col-sm-3">Resume</dt>
+                <dd class="col-sm-9">@Model.ResumeLink</dd>
+
+                <dt class="col-sm-3">Job Requisition</dt>
+                <dd class="col-sm-9">@Model.JobRequisition</dd>
+
+            </dl>
+
+        </div>
+
+        <div class="card-footer">
+
+            <a asp-action="Edit"
+               asp-route-id="@Model.Id"
+               class="btn btn-warning">
+                Edit
+            </a>
+
+            <a asp-action="Index"
+               class="btn btn-secondary">
+                Back
+            </a>
+
+        </div>
+
+    </div>
+
+</div>

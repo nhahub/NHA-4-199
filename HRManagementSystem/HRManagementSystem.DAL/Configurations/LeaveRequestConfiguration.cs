@@ -1,4 +1,4 @@
-﻿using HRManagementSystemMS01.Models;
+﻿using HRManagementSystem.DAL.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;

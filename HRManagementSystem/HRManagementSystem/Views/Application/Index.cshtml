@@ -1,0 +1,79 @@
+﻿@model IEnumerable<HRManagementSystem.BLL.DTOs.ApplicationDto>
+
+@{
+    ViewData["Title"] = "Applications";
+}
+
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>Applications</h2>
+
+        <a asp-action="Create"
+           class="btn btn-success">
+            New Application
+        </a>
+    </div>
+
+    <table class="table table-bordered table-hover">
+
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Candidate</th>
+                <th>Job</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Stage</th>
+                <th width="220">Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+
+                    <td>@item.Id</td>
+
+                    <td>@item.CandidateName</td>
+
+                    <td>@item.JobTitle</td>
+
+                    <td>@item.Date.ToShortDateString()</td>
+
+                    <td>@item.Status</td>
+
+                    <td>@item.Stage</td>
+
+                    <td>
+
+                        <a asp-action="Details"
+                           asp-route-id="@item.Id"
+                           class="btn btn-info btn-sm">
+                            Details
+                        </a>
+
+                        <a asp-action="Edit"
+                           asp-route-id="@item.Id"
+                           class="btn btn-warning btn-sm">
+                            Edit
+                        </a>
+
+                        <a asp-action="Delete"
+                           asp-route-id="@item.Id"
+                           class="btn btn-danger btn-sm">
+                            Delete
+                        </a>
+
+                    </td>
+
+                </tr>
+            }
+
+        </tbody>
+
+    </table>
+
+</div>

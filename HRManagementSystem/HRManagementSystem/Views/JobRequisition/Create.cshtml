@@ -1,0 +1,83 @@
+﻿@using HRManagementSystem.Enums
+@model HRManagementSystem.ViewModels.JobRequisition.CreateJobRequisitionViewModel
+
+@{
+    ViewData["Title"] = "Create Job Requisition";
+}
+
+<div class="container mt-4">
+
+    <div class="card shadow">
+
+        <div class="card-header">
+            <h3>Create Job Requisition</h3>
+        </div>
+
+        <div class="card-body">
+
+            <form asp-action="Create" method="post">
+
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                <div class="mb-3">
+                    <label asp-for="EmployeeID"></label>
+                    <input asp-for="EmployeeID" class="form-control" />
+                    <span asp-validation-for="EmployeeID" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="DepartmentID"></label>
+                    <input asp-for="DepartmentID" class="form-control" />
+                    <span asp-validation-for="DepartmentID" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Title"></label>
+                    <input asp-for="Title" class="form-control" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Description"></label>
+                    <textarea asp-for="Description" rows="4" class="form-control"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Headcount"></label>
+                    <input asp-for="Headcount" class="form-control" />
+                    <span asp-validation-for="Headcount" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Status"></label>
+
+                    <select asp-for="Status"
+                            asp-items="Html.GetEnumSelectList<JobRequisitionStatus>()"
+                            class="form-select">
+                    </select>
+
+                    <span asp-validation-for="Status" class="text-danger"></span>
+                </div>
+
+                <button class="btn btn-primary">
+                    Save
+                </button>
+
+                <a asp-action="Index"
+                   class="btn btn-secondary">
+                    Back
+                </a>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+@section Scripts
+{
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,55 @@
+﻿@model HRManagementSystem.BLL.DTOs.ApplicationDto
+
+@{
+    ViewData["Title"] = "Application Details";
+}
+
+<div class="container mt-4">
+
+    <div class="card shadow">
+
+        <div class="card-header">
+            <h3>Application Details</h3>
+        </div>
+
+        <div class="card-body">
+
+            <dl class="row">
+
+                <dt class="col-sm-3">Candidate</dt>
+                <dd class="col-sm-9">@Model.CandidateName</dd>
+
+                <dt class="col-sm-3">Job</dt>
+                <dd class="col-sm-9">@Model.JobTitle</dd>
+
+                <dt class="col-sm-3">Application Date</dt>
+                <dd class="col-sm-9">@Model.Date.ToShortDateString()</dd>
+
+                <dt class="col-sm-3">Status</dt>
+                <dd class="col-sm-9">@Model.Status</dd>
+
+                <dt class="col-sm-3">Stage</dt>
+                <dd class="col-sm-9">@Model.Stage</dd>
+
+            </dl>
+
+        </div>
+
+        <div class="card-footer">
+
+            <a asp-action="Edit"
+               asp-route-id="@Model.Id"
+               class="btn btn-warning">
+                Edit
+            </a>
+
+            <a asp-action="Index"
+               class="btn btn-secondary">
+                Back
+            </a>
+
+        </div>
+
+    </div>
+
+</div>

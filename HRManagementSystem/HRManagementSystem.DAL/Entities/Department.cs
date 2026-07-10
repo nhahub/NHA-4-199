@@ -1,11 +1,11 @@
-﻿using HRManagementSystemMSConsole.Models;
+﻿using HRManagementSystem.DAL.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HRManagementSystem.Models
+namespace HRManagementSystem.DAL.Entities
 {
     public class Department : BaseEntity
     {
@@ -13,7 +13,7 @@ namespace HRManagementSystem.Models
         public string? Description { get; set; }
         public required int ManagerId { get; set; }
 
-        public int? EmployeeCount { get; set; }
+        public int EmployeeCount { get; set; }
 
         //Navigation Properties
         public Employee? Manager { get; set; }

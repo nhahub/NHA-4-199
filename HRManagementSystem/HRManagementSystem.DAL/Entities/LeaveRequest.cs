@@ -1,4 +1,4 @@
-using HRManagementSystem.Models;
+using HRManagementSystem.DAL.Entities;
 using HRManagementSystemMS01.Enums;
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HRManagementSystemMS01.Models
+namespace HRManagementSystem.DAL.Entities
 {
     public partial class LeaveRequest : BaseEntity
     {

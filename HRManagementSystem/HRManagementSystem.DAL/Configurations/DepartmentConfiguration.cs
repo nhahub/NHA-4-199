@@ -1,4 +1,4 @@
-﻿using HRManagementSystem.Models;
+﻿using HRManagementSystem.DAL.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -28,8 +28,8 @@ namespace HRManagementSystem.Configurations
             d.Property(d => d.Description)
                 .HasColumnName("DepartmentDescription")
                 .HasColumnType("varchar")
-                .HasMaxLength(500)
-                .IsRequired();
+                .HasMaxLength(500);
+                
 
             d.Property(d => d.ManagerId)
                 .HasColumnName("DepartmentMangr")

@@ -5,29 +5,31 @@ using System.Text;
 using System.Threading.Tasks;
 
 using HRManagementSystem.Enums;
-using HRManagementSystem.Models;
+using HRManagementSystem.DAL.Entities;
 
-namespace HRManagementSystemMSConsole.Models;
-
-public class HiringHistory : BaseEntity
+namespace HRManagementSystem.DAL.Entities
 {
-    public int ApplicationId { get; set; }
 
-    public int EmployeeId { get; set; }
+    public class HiringHistory : BaseEntity
+    {
+        public int ApplicationId { get; set; }
 
-    public int ApprovedByEmployeeId { get; set; }
+        public int EmployeeId { get; set; }
 
-    public DateTime ApprovedDate { get; set; }
+        public int ApprovedByEmployeeId { get; set; }
 
-    public HiringDecision Decision { get; set; }
+        public DateTime ApprovedDate { get; set; }
 
-    public string? Notes { get; set; }
+        public HiringDecision Decision { get; set; }
 
-    // Navigation Properties
+        public string? Notes { get; set; }
 
-    public Application Application { get; set; }
+        // Navigation Properties
 
-    public Employee Employee { get; set; }
+        public Application Application { get; set; }
 
-    public Employee ApprovedByEmployee { get; set; }
+        public Employee Employee { get; set; }
+
+        public Employee ApprovedByEmployee { get; set; }
+    }
 }
