@@ -1,0 +1,69 @@
+@{
+    ViewData["Title"] = "Interviews";
+}
+<div class="app">
+      <aside class="sidebar" id="sidebar"></aside>
+
+      <div class="main">
+        <header class="topbar" id="topbar"></header>
+
+        <div class="content">
+          <div class="subnav-wrap">
+            <nav class="nav custom-nav-tabs">
+              <a class="nav-link" href="recruitment.html">Overview</a>
+              <a class="nav-link" href="requisitions.html">Requisitions</a>
+              <a class="nav-link" href="applications.html">Applications</a>
+              <a class="nav-link active-tab" href="interviews.html">Interviews</a>
+              <a class="nav-link" href="hiring-decision.html">Hiring Decisions</a>
+            </nav>
+          </div>
+
+          <div class="d-flex justify-content-between align-items-end mb-4 flex-wrap gap-3">
+            <div>
+              <h1 style="font-size: 24px; font-weight: 700; color: var(--text)">Interview Schedule</h1>
+              <div class="panel-sub">Manage candidate interviews and interviewer availability.</div>
+            </div>
+            <button id="scheduleBtn" class="btn btn-primary btn-sm d-flex align-items-center gap-1">
+              <span class="material-symbols-outlined" style="font-size: 18px">add</span>Schedule Interview
+            </button>
+          </div>
+
+          <div class="row g-3">
+            <div class="col-12 col-xl-8">
+              <div class="panel">
+                <div class="cal-panel-head">
+                  <h4 id="calMonthLabel" class="panel-title mb-0">July 2026</h4>
+                  <div class="d-flex gap-2">
+                    <button id="calPrev" class="cal-nav-btn"><span class="material-symbols-outlined" style="font-size:18px">chevron_left</span></button>
+                    <button id="calToday" class="btn btn-outline-secondary btn-sm">Today</button>
+                    <button id="calNext" class="cal-nav-btn"><span class="material-symbols-outlined" style="font-size:18px">chevron_right</span></button>
+                  </div>
+                </div>
+                <div class="cal-grid" id="calDow">
+                  <div class="cal-dow">Sun</div><div class="cal-dow">Mon</div><div class="cal-dow">Tue</div>
+                  <div class="cal-dow">Wed</div><div class="cal-dow">Thu</div><div class="cal-dow">Fri</div><div class="cal-dow">Sat</div>
+                </div>
+                <div class="cal-grid" id="calGrid"></div>
+              </div>
+            </div>
+
+            <div class="col-12 col-xl-4">
+              <div class="panel h-100">
+                <div class="panel-head">
+                  <div>
+                    <h4 class="panel-title mb-0">Upcoming Interviews</h4>
+                    <div class="panel-sub" id="upcomingSub">All scheduled interviews</div>
+                  </div>
+                  <button id="clearDaySelect" class="btn btn-link btn-sm text-decoration-none d-none">Show all</button>
+                </div>
+                <div id="upcomingList"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    @section Scripts
+{
+    <script src="~/js/recruitment/interviews-app.js"></script>
+}

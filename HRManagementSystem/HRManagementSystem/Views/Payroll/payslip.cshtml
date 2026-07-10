@@ -1,0 +1,120 @@
+@{
+    ViewData["Title"] = "Payslip";
+}
+<div class="app">
+      <aside class="sidebar" id="sidebar"></aside>
+
+      <div class="main">
+        <header class="topbar" id="topbar"></header>
+
+        <div class="content">
+          <div class="crumb no-print"><a href="payroll.html">Payroll</a> / <span>Payslip</span></div>
+
+          <div class="d-flex justify-content-between align-items-end mb-4 flex-wrap gap-3 no-print">
+            <div>
+              <h1 style="font-size: 24px; font-weight: 700; color: var(--text)">Salary Payslip</h1>
+              <div class="panel-sub" id="pageSubtitle">Pay period: July 2026</div>
+            </div>
+            <div class="d-flex gap-2">
+              <button id="printBtn" class="btn btn-outline-secondary btn-sm d-flex align-items-center gap-1">
+                <span class="material-symbols-outlined" style="font-size: 18px">print</span>Print
+              </button>
+              <button id="downloadBtn" class="btn btn-primary btn-sm d-flex align-items-center gap-1">
+                <span class="material-symbols-outlined" style="font-size: 18px">download</span>Download PDF
+              </button>
+            </div>
+          </div>
+
+          <div class="payslip-doc">
+            <div class="payslip-head">
+              <div>
+                <p class="payslip-title">Salary Payslip</p>
+                <p class="payslip-company mb-0">HRMS Enterprise Inc. &middot; 400 Market Street, San Francisco, CA 94105</p>
+              </div>
+              <div class="payslip-period">
+                <div class="label">Pay Period</div>
+                <div class="value">July 1 – July 31, 2026</div>
+                <div class="label mt-2">Pay Date</div>
+                <div class="value" style="font-size: 13px">July 31, 2026</div>
+              </div>
+            </div>
+
+            <div class="payslip-info-grid">
+              <div>
+                <div class="info-label">Employee Name</div>
+                <div class="info-value" id="pEmpName">Robert Fox</div>
+              </div>
+              <div>
+                <div class="info-label">Employee ID</div>
+                <div class="info-value" id="pEmpId">EMP-10042</div>
+              </div>
+              <div>
+                <div class="info-label">Department</div>
+                <div class="info-value" id="pEmpDept">Engineering</div>
+              </div>
+              <div>
+                <div class="info-label">Position</div>
+                <div class="info-value" id="pEmpTitle">Senior Software Engineer</div>
+              </div>
+            </div>
+
+            <div class="payslip-cols">
+              <div>
+                <div class="payslip-col-title">Earnings</div>
+                <div class="payslip-line">
+                  <span class="payslip-line-label">Basic Salary</span>
+                  <span class="payslip-line-value" id="eBasic">$8,750.00</span>
+                </div>
+                <div class="payslip-line">
+                  <span class="payslip-line-label">Allowances</span>
+                  <span class="payslip-line-value" id="eAllow">$650.00</span>
+                </div>
+                <div class="payslip-line">
+                  <span class="payslip-line-label">Bonus</span>
+                  <span class="payslip-line-value" id="eBonus">$300.00</span>
+                </div>
+                <div class="payslip-line" style="border-bottom: none">
+                  <span class="payslip-line-label">Overtime</span>
+                  <span class="payslip-line-value" id="eOT">$216.00</span>
+                </div>
+                <div class="payslip-subtotal">
+                  <span>Gross Earnings</span>
+                  <span id="eTotal">$9,916.00</span>
+                </div>
+              </div>
+
+              <div>
+                <div class="payslip-col-title">Deductions</div>
+                <div class="payslip-line">
+                  <span class="payslip-line-label">Federal &amp; State Tax</span>
+                  <span class="payslip-line-value" id="dTax">$1,410.00</span>
+                </div>
+                <div class="payslip-line">
+                  <span class="payslip-line-label">Leave Deductions</span>
+                  <span class="payslip-line-value" id="dLeave">$0.00</span>
+                </div>
+                <div class="payslip-line" style="border-bottom: none">
+                  <span class="payslip-line-label">Other Deductions</span>
+                  <span class="payslip-line-value" id="dOther">$150.00</span>
+                </div>
+                <div class="payslip-subtotal">
+                  <span>Total Deductions</span>
+                  <span id="dTotal">$1,560.00</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="payslip-net">
+              <span class="net-label">Net Salary</span>
+              <span class="net-value" id="netSalary">$8,356.00</span>
+            </div>
+
+            <p class="payslip-foot-note">This is a system-generated payslip and does not require a signature. For discrepancies, contact payroll@hrms-enterprise.com.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    @section Scripts
+{
+    <script src="~/js/payroll/payslip-app.js"></script>
+}

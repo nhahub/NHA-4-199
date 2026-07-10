@@ -1,0 +1,152 @@
+@{
+    ViewData["Title"] = "Department Details";
+}
+<div class="app">
+      <aside class="sidebar" id="sidebar"></aside>
+
+      <div class="main">
+        <header class="topbar" id="topbar"></header>
+
+        <div class="content">
+          <div class="crumb"><a href="departments.html">Departments</a> / <span id="crumbName">Details</span></div>
+
+          <section class="panel mb-3">
+            <div class="d-flex justify-content-between align-items-start mb-3 flex-wrap gap-3">
+              <div class="d-flex align-items-start gap-3">
+                <div class="icon-primary d-flex align-items-center justify-content-center rounded" style="width:56px;height:56px">
+                  <span id="deptIcon" class="material-symbols-outlined icon-lg">engineering</span>
+                </div>
+                <div>
+                  <h3 id="deptName" class="fw-bold mb-1" style="font-size:20px">Engineering</h3>
+                  <p class="text-muted mb-0 small">Specialized in developing and maintaining core platform features.</p>
+
+                  <div class="d-flex flex-wrap align-items-center gap-4 mt-3">
+                    <div class="d-flex align-items-center gap-2">
+                      <span class="text-muted text-uppercase small">Manager:</span>
+                      <img id="deptManagerAvatar" class="rounded-circle" width="24" height="24" style="object-fit:cover" src="" alt="Manager" />
+                      <span id="deptManagerName" class="small fw-semibold">Robert Fox</span>
+                    </div>
+                    <div class="d-flex align-items-center gap-2">
+                      <span class="text-muted text-uppercase small">Staffing:</span>
+                      <span id="deptStaffing" class="small fw-semibold">42 Employees</span>
+                    </div>
+                    <div class="d-flex align-items-center gap-2">
+                      <span class="text-muted text-uppercase small">Hiring:</span>
+                      <span id="deptHiring" class="small fw-semibold" style="color:var(--primary)">3 Open Roles</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="d-flex gap-2">
+                <button class="btn btn-outline-secondary btn-sm d-flex align-items-center gap-1">
+                  <span class="material-symbols-outlined" style="font-size:16px">edit</span> Edit Dept
+                </button>
+                <button class="btn btn-outline-secondary btn-sm d-flex align-items-center">
+                  <span class="material-symbols-outlined" style="font-size:16px">share</span>
+                </button>
+              </div>
+            </div>
+
+            <nav class="nav custom-nav-tabs" id="mainTabNav">
+              <a class="nav-link active-tab" href="#">Overview</a>
+              <a class="nav-link" href="#">Employees</a>
+              <a class="nav-link" href="#">Open Positions</a>
+              <a class="nav-link" href="#">Attendance</a>
+              <a class="nav-link" href="#">Reports</a>
+            </nav>
+          </section>
+
+          <!-- Bento Stat Grid -->
+          <div class="row g-3 mb-3">
+            <div class="col-12 col-md-6 col-lg-3">
+              <div class="kpi-card">
+                <div class="kpi-head">
+                  <span class="kpi-label">Total Employees</span>
+                  <span class="material-symbols-outlined kpi-icon icon-primary">groups</span>
+                </div>
+                <div id="statEmployees" class="kpi-value" style="font-size:22px">42</div>
+                <div class="kpi-foot text-success">
+                  <span class="material-symbols-outlined" style="font-size:14px">trending_up</span> +2 this month
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-3">
+              <div class="kpi-card">
+                <div class="kpi-head">
+                  <span class="kpi-label">Open Vacancies</span>
+                  <span class="material-symbols-outlined kpi-icon icon-tertiary">work</span>
+                </div>
+                <div id="statVacancies" class="kpi-value" style="font-size:22px">3</div>
+                <div class="kpi-foot text-muted">Across teams</div>
+              </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-3">
+              <div class="kpi-card">
+                <div class="kpi-head">
+                  <span class="kpi-label">Avg. Attendance</span>
+                  <span class="material-symbols-outlined kpi-icon icon-success">check_circle</span>
+                </div>
+                <div class="kpi-value" style="font-size:22px">96%</div>
+                <div class="kpi-foot text-success">
+                  <span class="material-symbols-outlined" style="font-size:14px">expand_less</span> 1.2% vs last month
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-3">
+              <div class="kpi-card">
+                <div class="kpi-head">
+                  <span class="kpi-label">Dept. Manager</span>
+                  <span class="material-symbols-outlined kpi-icon icon-primary">person</span>
+                </div>
+                <div class="d-flex align-items-center gap-2 mb-1">
+                  <img id="deptManagerAvatar2" class="rounded-circle" width="24" height="24" style="object-fit:cover" src="" alt="Manager" />
+                  <span id="deptManagerName2" class="fw-bold small">Robert Fox</span>
+                </div>
+                <div id="deptManagerTitle" class="text-muted small">Senior Engineering Director</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row g-3">
+            <!-- Employee Table -->
+            <div class="col-12 col-lg-8">
+              <div class="panel p-0 overflow-hidden h-100">
+                <div class="panel-head px-3 pt-3">
+                  <h4 class="panel-title">Active Employees</h4>
+                  <a href="../employees/employees.html" class="btn btn-link btn-sm p-0 text-decoration-none">View All</a>
+                </div>
+                <div class="table-responsive">
+                  <table class="table align-middle mb-0">
+                    <thead>
+                      <tr>
+                        <th class="ps-3">Employee</th>
+                        <th>Position</th>
+                        <th>Hire Date</th>
+                        <th>Status</th>
+                        <th class="text-end pe-3">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody id="deptEmployeeBody"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <!-- Open Positions -->
+            <div class="col-12 col-lg-4">
+              <div class="d-flex flex-column gap-3">
+                <div class="d-flex justify-content-between align-items-center">
+                  <h4 class="panel-title mb-0">Open Positions</h4>
+                  <span id="openPositionsBadge" class="chip chip-primary">3 OPEN</span>
+                </div>
+                <div id="jobCardsWrap" class="d-flex flex-column gap-3"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    @section Scripts
+{
+    <script src="~/js/departments/DepartmentDetails-app.js"></script>
+}

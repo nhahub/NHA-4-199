@@ -11,6 +11,17 @@ public class DepartmentController : Controller
 {
     private readonly IDepartmentService _departmentService;
     private readonly IEmployeeService _employeeService;
+
+    public IActionResult Departments()
+    {
+        return View();
+    }
+
+    public IActionResult DepartmentDetails()
+    {
+        return View();
+    }
+
     public DepartmentController(
       IDepartmentService departmentService,
       IEmployeeService employeeService)

@@ -1,0 +1,275 @@
+@{
+ViewData["Title"] = "Settings";
+}
+<div class="app">
+      <aside class="sidebar" id="sidebar"></aside>
+
+      <div class="main">
+        <header class="topbar" id="topbar"></header>
+
+        <div class="content">
+          <div class="subnav-wrap">
+            <nav class="nav custom-nav-tabs">
+              <a class="nav-link" href="admin-users.html">Users</a>
+              <a class="nav-link" href="admin-roles.html">Roles &amp; Permissions</a>
+              <a class="nav-link" href="admin-shifts.html">Work Shifts</a>
+              <a class="nav-link active-tab" href="admin-settings.html">Settings</a>
+            </nav>
+          </div>
+
+          <div class="mb-4">
+            <h1 style="font-size: 24px; font-weight: 700; color: var(--text)">System Settings</h1>
+            <div class="panel-sub">Configure company-wide preferences and system behavior.</div>
+          </div>
+
+          <div class="row g-3">
+            <div class="col-12 col-lg-3">
+              <div class="panel">
+                <nav class="settings-nav" id="settingsNav">
+                  <button class="settings-nav-item active" data-pane="general">
+                    <span class="material-symbols-outlined">business</span>General
+                  </button>
+                  <button class="settings-nav-item" data-pane="security">
+                    <span class="material-symbols-outlined">shield</span>Security
+                  </button>
+                  <button class="settings-nav-item" data-pane="email">
+                    <span class="material-symbols-outlined">mail</span>Email
+                  </button>
+                  <button class="settings-nav-item" data-pane="notifications">
+                    <span class="material-symbols-outlined">notifications</span>Notifications
+                  </button>
+                  <button class="settings-nav-item" data-pane="localization">
+                    <span class="material-symbols-outlined">language</span>Localization
+                  </button>
+                </nav>
+              </div>
+            </div>
+
+            <div class="col-12 col-lg-9">
+              <div class="panel">
+                <!-- General -->
+                <div class="settings-pane show-pane" id="pane-general">
+                  <div class="settings-section-title">General</div>
+                  <div class="settings-section-sub">Company profile shown across the portal and on generated documents.</div>
+
+                  <div class="d-flex align-items-center gap-3 mb-4">
+                    <div class="logo-upload-box">
+                      <span class="material-symbols-outlined">add_photo_alternate</span>
+                    </div>
+                    <div>
+                      <p class="mb-1 fw-semibold small">Company Logo</p>
+                      <button type="button" class="btn btn-outline-secondary btn-sm">Upload Logo</button>
+                    </div>
+                  </div>
+
+                  <div class="row g-3 mb-3">
+                    <div class="col-12 col-md-6">
+                      <label class="form-label small fw-semibold">Company Name</label>
+                      <input type="text" class="form-control" value="HRMS Enterprise Inc." />
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <label class="form-label small fw-semibold">Support Email</label>
+                      <input type="email" class="form-control" value="support@hrms-enterprise.com" />
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <label class="form-label small fw-semibold">Timezone</label>
+                      <select class="form-select">
+                        <option>(UTC-08:00) Pacific Time</option>
+                        <option selected>(UTC-05:00) Eastern Time</option>
+                        <option>(UTC+00:00) London</option>
+                        <option>(UTC+01:00) Berlin</option>
+                        <option>(UTC+04:00) Dubai</option>
+                      </select>
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <label class="form-label small fw-semibold">Language</label>
+                      <select class="form-select">
+                        <option selected>English</option>
+                        <option>Arabic</option>
+                        <option>Spanish</option>
+                        <option>French</option>
+                      </select>
+                    </div>
+                  </div>
+                  <button type="button" class="btn btn-primary btn-sm settings-save">Save Changes</button>
+                </div>
+
+                <!-- Security -->
+                <div class="settings-pane" id="pane-security">
+                  <div class="settings-section-title">Security</div>
+                  <div class="settings-section-sub">Password policy and session behavior for all system accounts.</div>
+
+                  <div class="row g-3 mb-3">
+                    <div class="col-12 col-md-6">
+                      <label class="form-label small fw-semibold">Minimum Password Length</label>
+                      <input type="number" class="form-control" value="10" min="6" />
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <label class="form-label small fw-semibold">Password Expiry (days)</label>
+                      <input type="number" class="form-control" value="90" min="0" />
+                    </div>
+                  </div>
+
+                  <p class="form-label small fw-semibold mb-2">Password must include</p>
+                  <div class="d-flex flex-column gap-2 mb-3">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="secUpper" checked />
+                      <label class="form-check-label small" for="secUpper">At least one uppercase letter</label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="secNumber" checked />
+                      <label class="form-check-label small" for="secNumber">At least one number</label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="secSymbol" />
+                      <label class="form-check-label small" for="secSymbol">At least one special character</label>
+                    </div>
+                  </div>
+
+                  <div class="row g-3 mb-3">
+                    <div class="col-12 col-md-6">
+                      <label class="form-label small fw-semibold">Session Timeout (minutes)</label>
+                      <input type="number" class="form-control" value="30" min="5" />
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <label class="form-label small fw-semibold">Failed Login Lockout (attempts)</label>
+                      <input type="number" class="form-control" value="5" min="1" />
+                    </div>
+                  </div>
+
+                  <div class="form-check form-switch mb-3">
+                    <input class="form-check-input" type="checkbox" id="secMfa" checked />
+                    <label class="form-check-label small fw-semibold" for="secMfa">Require two-factor authentication for Admin and Payroll Admin roles</label>
+                  </div>
+
+                  <button type="button" class="btn btn-primary btn-sm settings-save">Save Changes</button>
+                </div>
+
+                <!-- Email -->
+                <div class="settings-pane" id="pane-email">
+                  <div class="settings-section-title">Email</div>
+                  <div class="settings-section-sub">SMTP configuration used to send system notifications and payslips.</div>
+
+                  <div class="row g-3 mb-3">
+                    <div class="col-12 col-md-8">
+                      <label class="form-label small fw-semibold">SMTP Host</label>
+                      <input type="text" class="form-control" placeholder="smtp.enterprise-mail.com" />
+                    </div>
+                    <div class="col-12 col-md-4">
+                      <label class="form-label small fw-semibold">Port</label>
+                      <input type="number" class="form-control" placeholder="587" />
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <label class="form-label small fw-semibold">Username</label>
+                      <input type="text" class="form-control" placeholder="no-reply@hrms-enterprise.com" />
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <label class="form-label small fw-semibold">Password</label>
+                      <input type="password" class="form-control" placeholder="••••••••" />
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <label class="form-label small fw-semibold">Encryption</label>
+                      <select class="form-select">
+                        <option selected>STARTTLS</option>
+                        <option>SSL/TLS</option>
+                        <option>None</option>
+                      </select>
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <label class="form-label small fw-semibold">From Address</label>
+                      <input type="email" class="form-control" placeholder="no-reply@hrms-enterprise.com" />
+                    </div>
+                  </div>
+
+                  <div class="d-flex gap-2">
+                    <button type="button" class="btn btn-outline-secondary btn-sm" id="testSmtpBtn">Test Connection</button>
+                    <button type="button" class="btn btn-primary btn-sm settings-save">Save Changes</button>
+                  </div>
+                </div>
+
+                <!-- Notifications -->
+                <div class="settings-pane" id="pane-notifications">
+                  <div class="settings-section-title">Notifications</div>
+                  <div class="settings-section-sub">Choose which system events trigger an email notification.</div>
+
+                  <div class="d-flex flex-column">
+                    <div class="balance-row">
+                      <span class="balance-label">Leave request submitted</span>
+                      <div class="form-check form-switch mb-0"><input class="form-check-input" type="checkbox" checked /></div>
+                    </div>
+                    <div class="balance-row">
+                      <span class="balance-label">Leave request approved / rejected</span>
+                      <div class="form-check form-switch mb-0"><input class="form-check-input" type="checkbox" checked /></div>
+                    </div>
+                    <div class="balance-row">
+                      <span class="balance-label">New candidate application received</span>
+                      <div class="form-check form-switch mb-0"><input class="form-check-input" type="checkbox" checked /></div>
+                    </div>
+                    <div class="balance-row">
+                      <span class="balance-label">Interview scheduled or rescheduled</span>
+                      <div class="form-check form-switch mb-0"><input class="form-check-input" type="checkbox" checked /></div>
+                    </div>
+                    <div class="balance-row">
+                      <span class="balance-label">Payroll run completed</span>
+                      <div class="form-check form-switch mb-0"><input class="form-check-input" type="checkbox" checked /></div>
+                    </div>
+                    <div class="balance-row">
+                      <span class="balance-label">New payslip available</span>
+                      <div class="form-check form-switch mb-0"><input class="form-check-input" type="checkbox" checked /></div>
+                    </div>
+                  </div>
+
+                  <button type="button" class="btn btn-primary btn-sm settings-save mt-3">Save Changes</button>
+                </div>
+
+                <!-- Localization -->
+                <div class="settings-pane" id="pane-localization">
+                  <div class="settings-section-title">Localization</div>
+                  <div class="settings-section-sub">Formats used for dates, currency and the working calendar.</div>
+
+                  <div class="row g-3 mb-3">
+                    <div class="col-12 col-md-6">
+                      <label class="form-label small fw-semibold">Date Format</label>
+                      <select class="form-select">
+                        <option selected>MM/DD/YYYY</option>
+                        <option>DD/MM/YYYY</option>
+                        <option>YYYY-MM-DD</option>
+                      </select>
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <label class="form-label small fw-semibold">Currency</label>
+                      <select class="form-select">
+                        <option selected>USD ($)</option>
+                        <option>EUR (€)</option>
+                        <option>GBP (£)</option>
+                        <option>AED (?.?)</option>
+                      </select>
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <label class="form-label small fw-semibold">First Day of Week</label>
+                      <select class="form-select">
+                        <option selected>Sunday</option>
+                        <option>Monday</option>
+                      </select>
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <label class="form-label small fw-semibold">Time Format</label>
+                      <select class="form-select">
+                        <option selected>12-hour</option>
+                        <option>24-hour</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <button type="button" class="btn btn-primary btn-sm settings-save">Save Changes</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+@section Scripts
+{
+<script src="~/js/admin/admin-settings-app.js"></script>
+}

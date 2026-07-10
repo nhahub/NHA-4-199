@@ -1,0 +1,98 @@
+@{
+    ViewData["Title"] = "Requisitions";
+}
+<div class="app">
+      <aside class="sidebar" id="sidebar"></aside>
+
+      <div class="main">
+        <header class="topbar" id="topbar"></header>
+
+        <div class="content">
+          <div class="subnav-wrap">
+            <nav class="nav custom-nav-tabs">
+              <a class="nav-link" href="recruitment.html">Overview</a>
+              <a class="nav-link active-tab" href="requisitions.html">Requisitions</a>
+              <a class="nav-link" href="applications.html">Applications</a>
+              <a class="nav-link" href="interviews.html">Interviews</a>
+              <a class="nav-link" href="hiring-decision.html">Hiring Decisions</a>
+            </nav>
+          </div>
+
+          <div class="d-flex justify-content-between align-items-end mb-4 flex-wrap gap-3">
+            <div>
+              <h1 style="font-size: 24px; font-weight: 700; color: var(--text)">Job Requisitions</h1>
+              <div class="panel-sub">Manage hiring requests and open positions.</div>
+            </div>
+            <button id="createReqBtn" class="btn btn-primary btn-sm d-flex align-items-center gap-1">
+              <span class="material-symbols-outlined" style="font-size: 18px">add</span>Create Requisition
+            </button>
+          </div>
+
+          <div class="panel mb-4 p-3">
+            <div class="filter-toolbar">
+              <div class="search mb-0 flex-grow-1" style="min-width: 220px">
+                <span class="material-symbols-outlined">search</span>
+                <input id="reqSearch" type="text" placeholder="Search position..." style="width: 100%" />
+              </div>
+              <select id="reqDept" class="form-select form-select-sm w-auto">
+                <option value="">Department</option>
+                <option>Engineering</option>
+                <option>Sales</option>
+                <option>Marketing</option>
+                <option>Finance</option>
+                <option>Human Resources</option>
+                <option>Product Design</option>
+              </select>
+              <select id="reqStatus" class="form-select form-select-sm w-auto">
+                <option value="">Status</option>
+                <option>Open</option>
+                <option>On Hold</option>
+                <option>Closed</option>
+                <option>Pending Approval</option>
+              </select>
+              <input id="reqDateFrom" type="date" class="form-control form-control-sm w-auto" title="From" />
+              <span class="text-muted small">to</span>
+              <input id="reqDateTo" type="date" class="form-control form-control-sm w-auto" title="To" />
+              <button id="reqClear" class="btn btn-link btn-sm text-decoration-none">Clear Filters</button>
+            </div>
+          </div>
+
+          <div class="panel p-0 overflow-hidden">
+            <div class="table-responsive">
+              <table class="table align-middle mb-0">
+                <thead>
+                  <tr>
+                    <th class="ps-4">Job Title</th>
+                    <th>Department</th>
+                    <th>Requested By</th>
+                    <th>Head Count</th>
+                    <th>Status</th>
+                    <th>Applicants</th>
+                    <th>Created Date</th>
+                    <th class="text-end pe-4">Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="reqBody"></tbody>
+              </table>
+            </div>
+            <div class="table-footer">
+              <span id="reqPaginationInfo" class="text-muted small fw-medium">Showing 0 of 0 requisitions</span>
+              <div class="d-flex gap-1">
+                <button class="icon-btn p-1" disabled>
+                  <span class="material-symbols-outlined" style="font-size: 18px">chevron_left</span>
+                </button>
+                <button class="btn btn-primary btn-sm px-2 py-1" style="font-size: 12px">1</button>
+                <button class="btn btn-light btn-sm px-2 py-1 border text-secondary" style="font-size: 12px">2</button>
+                <button class="icon-btn p-1">
+                  <span class="material-symbols-outlined" style="font-size: 18px">chevron_right</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    @section Scripts
+{
+    <script src="~/js/recruitment/requisitions-app.js"></script>
+}

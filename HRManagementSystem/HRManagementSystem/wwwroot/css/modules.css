@@ -1,0 +1,354 @@
+/* modules.css — additive component styles for Recruitition + Attendance modules.
+   Loaded after theme.css. Reuses the existing HRMS tokens (--primary, --border, etc). */
+
+/* Cross-page sub navigation between recruitment screens */
+.subnav-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+/* Generic toolbar row (search + selects) reused by Requisitions / Applications */
+.filter-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+.filter-toolbar .form-select,
+.filter-toolbar input[type="date"] {
+  height: 38px;
+}
+
+/* Table wrapper footer (pagination) shared style already exists inline on employees.html;
+   codified here so new pages can use the same class name */
+.table-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: #f8fafc;
+  border-top: 1px solid var(--border);
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* Empty state */
+.empty-state {
+  padding: 56px 24px;
+  text-align: center;
+  color: var(--muted);
+}
+.empty-state .material-symbols-outlined {
+  font-size: 34px;
+  color: #c7ccd6;
+  margin-bottom: 8px;
+  display: block;
+}
+.empty-state p {
+  margin: 0;
+  font-size: 13px;
+}
+
+/* Loading skeleton rows */
+@keyframes skeleton-pulse {
+  0%, 100% { opacity: 0.55; }
+  50% { opacity: 1; }
+}
+.skeleton-bar {
+  display: inline-block;
+  height: 12px;
+  border-radius: 4px;
+  background: #e6e9ef;
+  animation: skeleton-pulse 1.3s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .skeleton-bar { animation: none; }
+}
+
+/* Star ratings */
+.star-rating {
+  display: inline-flex;
+  gap: 2px;
+  color: #d8dce3;
+}
+.star-rating .material-symbols-outlined {
+  font-size: 16px;
+}
+.star-rating .filled {
+  color: var(--warning);
+  font-variation-settings: "FILL" 1;
+}
+
+/* Sortable table headers */
+.sortable {
+  cursor: pointer;
+  user-select: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+}
+.sortable .material-symbols-outlined {
+  font-size: 15px;
+  color: #b6bcc7;
+}
+.sortable.sort-active .material-symbols-outlined {
+  color: var(--primary);
+}
+
+/* Recruitment stage pill (Applications page) */
+.stage-pill {
+  padding: 3px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+.stage-applied { background: #eef1f6; color: var(--secondary); }
+.stage-screening { background: rgba(0, 103, 124, 0.1); color: var(--tertiary); }
+.stage-interview { background: rgba(0, 87, 205, 0.12); color: var(--primary); }
+.stage-offer { background: rgba(245, 158, 11, 0.15); color: #b45309; }
+.stage-hired { background: rgba(25, 135, 84, 0.15); color: #0f6c3f; }
+.stage-rejected { background: rgba(220, 53, 69, 0.12); color: var(--danger); }
+
+/* Document card (resume) */
+.doc-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px;
+  background: #fafbfd;
+}
+.doc-card .doc-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  background: rgba(220, 53, 69, 0.1);
+  color: var(--danger);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Vertical timeline */
+.rec-timeline {
+  position: relative;
+  padding-left: 28px;
+}
+.rec-timeline::before {
+  content: "";
+  position: absolute;
+  left: 9px;
+  top: 6px;
+  bottom: 6px;
+  width: 2px;
+  background: var(--border);
+}
+.rec-timeline-item {
+  position: relative;
+  padding-bottom: 24px;
+}
+.rec-timeline-item:last-child { padding-bottom: 0; }
+.rec-timeline-dot {
+  position: absolute;
+  left: -28px;
+  top: 2px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.rec-timeline-item.done .rec-timeline-dot {
+  border-color: var(--success);
+  background: var(--success);
+  color: #fff;
+}
+.rec-timeline-item.current .rec-timeline-dot {
+  border-color: var(--primary);
+  background: var(--primary);
+  color: #fff;
+}
+.rec-timeline-dot .material-symbols-outlined { font-size: 12px; }
+
+/* Approval stepper (Hiring Decision) */
+.approval-track {
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+}
+.approval-step {
+  flex: 1;
+  text-align: center;
+  position: relative;
+  padding-top: 6px;
+}
+.approval-step::before {
+  content: "";
+  position: absolute;
+  top: 15px;
+  left: -50%;
+  width: 100%;
+  height: 2px;
+  background: var(--border);
+  z-index: 0;
+}
+.approval-step:first-child::before { display: none; }
+.approval-step .step-dot {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid var(--border);
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 8px;
+  position: relative;
+  z-index: 1;
+  font-weight: 700;
+  font-size: 13px;
+}
+.approval-step.done .step-dot {
+  background: var(--success);
+  border-color: var(--success);
+  color: #fff;
+}
+.approval-step.done::before { background: var(--success); }
+.approval-step.active .step-dot {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+}
+.approval-step .step-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text);
+}
+.approval-step .step-sub {
+  font-size: 11px;
+  color: var(--muted);
+}
+
+/* Decision buttons */
+.decision-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.decision-actions .btn {
+  min-width: 160px;
+}
+
+/* Calendar (Interviews page) */
+.cal-panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+.cal-nav-btn {
+  border: 1px solid var(--border);
+  background: #fff;
+  border-radius: 6px;
+  width: 30px;
+  height: 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--secondary);
+}
+.cal-nav-btn:hover { background: #f1f4fa; }
+.cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+.cal-dow {
+  text-align: center;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding-bottom: 6px;
+}
+.cal-cell {
+  min-height: 78px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 6px;
+  font-size: 12px;
+  color: var(--text);
+  background: #fff;
+  cursor: default;
+}
+.cal-cell.other-month {
+  background: #fafbfd;
+  color: #c3c8d1;
+}
+.cal-cell.today {
+  border-color: var(--primary);
+  background: rgba(0, 87, 205, 0.04);
+}
+.cal-cell.has-events { cursor: pointer; }
+.cal-cell.selected { border-color: var(--primary); box-shadow: inset 0 0 0 1px var(--primary); }
+.cal-day-num { font-weight: 600; }
+.cal-events {
+  margin-top: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.cal-event-pill {
+  font-size: 10px;
+  padding: 1px 5px;
+  border-radius: 4px;
+  background: rgba(0, 87, 205, 0.12);
+  color: var(--primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Upcoming interview list item */
+.interview-item {
+  display: flex;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid #f1f3f7;
+}
+.interview-item:last-child { border-bottom: 0; }
+.interview-time-badge {
+  flex-shrink: 0;
+  width: 56px;
+  text-align: center;
+  padding: 6px 4px;
+  border-radius: 8px;
+  background: #f5f7fb;
+  border: 1px solid var(--border);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--primary);
+  line-height: 1.3;
+}
+
+/* Small avatar row for interviewers/candidates lists */
+.avatar-xs {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--border);
+}

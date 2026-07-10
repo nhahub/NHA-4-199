@@ -1,0 +1,297 @@
+/* modules-hr.css — additive component styles for Attendance Records, My Attendance,
+   Leave Management and Payroll modules. Loaded after theme.css + modules.css.
+   Reuses existing HRMS tokens (--primary, --border, etc). No new colors introduced. */
+
+/* Extra attendance-status variant (Half Day) to sit alongside status-on-time/status-late */
+.status-halfday {
+  background: rgba(0, 103, 124, 0.1);
+  color: var(--tertiary);
+}
+
+/* Source column — small inline icon + label, muted */
+.source-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--muted);
+  font-size: 12.5px;
+}
+.source-tag .material-symbols-outlined {
+  font-size: 15px;
+}
+
+/* Date range pair used in filter toolbars */
+.date-range-pair {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.date-range-pair input[type="date"] {
+  height: 38px;
+}
+
+/* Leave type pills (Requests / Overview tables) */
+.leave-type-pill {
+  padding: 3px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  display: inline-block;
+}
+.leave-annual { background: rgba(0, 87, 205, 0.12); color: var(--primary); }
+.leave-sick { background: rgba(220, 53, 69, 0.1); color: var(--danger); }
+.leave-casual { background: rgba(0, 103, 124, 0.1); color: var(--tertiary); }
+.leave-unpaid { background: #eef1f6; color: var(--secondary); }
+.leave-parental { background: rgba(245, 158, 11, 0.15); color: #b45309; }
+
+/* Decision badges reused in Leave Requests table */
+.decision-pending { color: var(--muted); font-style: italic; }
+
+/* Today's Attendance card (My Attendance self-service) */
+.today-card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px;
+}
+.today-card .today-date {
+  font-size: 13px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  font-weight: 600;
+}
+.today-card .today-clock {
+  font-size: 34px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  color: var(--text);
+  margin: 2px 0 18px;
+}
+.punch-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 16px;
+  padding: 16px 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 18px;
+}
+.punch-item .punch-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: var(--muted);
+  font-weight: 600;
+  display: block;
+  margin-bottom: 4px;
+}
+.punch-item .punch-value {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+}
+.punch-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.punch-actions .btn {
+  min-width: 150px;
+}
+
+/* Leave balance summary card (Request Leave form) */
+.balance-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #f1f3f7;
+}
+.balance-row:last-child { border-bottom: 0; }
+.balance-row .balance-label {
+  color: var(--muted);
+  font-size: 13px;
+}
+.balance-row .balance-value {
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--text);
+}
+.balance-row.highlight .balance-value {
+  color: var(--primary);
+  font-size: 20px;
+}
+
+/* File upload dropzone */
+.upload-box {
+  border: 1.5px dashed var(--border);
+  border-radius: 10px;
+  padding: 22px;
+  text-align: center;
+  color: var(--muted);
+  background: #fafbfd;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+}
+.upload-box:hover,
+.upload-box.dragover {
+  border-color: var(--primary);
+  background: rgba(0, 87, 205, 0.03);
+}
+.upload-box .material-symbols-outlined {
+  font-size: 26px;
+  color: #b6bcc7;
+  display: block;
+  margin-bottom: 6px;
+}
+.upload-filename {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 12px;
+  margin-top: 10px;
+  font-size: 13px;
+  background: #fff;
+}
+.upload-filename .material-symbols-outlined {
+  font-size: 18px;
+  color: var(--primary);
+}
+
+/* 4-step payroll processing wizard */
+.wizard-track {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.wizard-step-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  border-radius: 10px 10px 0 0;
+  background: #fafbfd;
+}
+.wizard-step-num {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  color: var(--muted);
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 12px;
+  flex-shrink: 0;
+}
+.wizard-step.done .wizard-step-num {
+  background: var(--success);
+  border-color: var(--success);
+  color: #fff;
+}
+.wizard-step.active .wizard-step-num {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+}
+.wizard-step-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text);
+}
+.wizard-step-status {
+  font-size: 11px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+.wizard-step.done .wizard-step-status { color: var(--success); }
+.wizard-step.active .wizard-step-status { color: var(--primary); }
+
+.wizard-panel {
+  border: 1px solid var(--border);
+  border-top: none;
+  border-radius: 0 0 10px 10px;
+  padding: 18px;
+  background: #fff;
+}
+@media (max-width: 992px) {
+  .wizard-track { grid-template-columns: 1fr; }
+  .wizard-step-head { border-radius: 10px; }
+  .wizard-panel { border-top: 1px solid var(--border); border-radius: 10px; margin-top: -1px; }
+}
+
+/* Warning callout before irreversible confirmation */
+.warning-box {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  background: rgba(245, 158, 11, 0.07);
+  border-radius: 10px;
+  padding: 14px 16px;
+}
+.warning-box .material-symbols-outlined {
+  color: var(--warning);
+  font-size: 22px;
+  flex-shrink: 0;
+}
+.warning-box p {
+  margin: 0;
+  font-size: 13px;
+  color: var(--text);
+}
+.warning-box p + p {
+  margin-top: 4px;
+  color: var(--muted);
+}
+
+/* Payroll run summary line items */
+.summary-line {
+  display: flex;
+  justify-content: space-between;
+  padding: 9px 0;
+  border-bottom: 1px solid #f1f3f7;
+  font-size: 13px;
+}
+.summary-line:last-child { border-bottom: 0; font-weight: 700; padding-top: 12px; }
+.summary-line .label { color: var(--muted); }
+
+/* Small legend for doughnut/bar charts (leave type distribution, salary distribution) */
+.legend-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 12px;
+}
+.legend-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12.5px;
+}
+.legend-row .legend-key {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text);
+}
+.legend-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 2px;
+  display: inline-block;
+}
+.legend-row .legend-val {
+  color: var(--muted);
+  font-weight: 600;
+}

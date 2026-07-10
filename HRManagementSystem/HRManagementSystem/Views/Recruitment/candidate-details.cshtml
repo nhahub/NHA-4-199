@@ -1,0 +1,173 @@
+@{
+    ViewData["Title"] = "Candidate Details";
+}
+<div class="app">
+      <aside class="sidebar" id="sidebar"></aside>
+
+      <div class="main">
+        <header class="topbar" id="topbar"></header>
+
+        <div class="content">
+          <div class="crumb"><a href="applications.html">Applications</a> / <span id="crumbName">Candidate</span></div>
+
+          <section class="panel mb-4">
+            <div class="d-flex flex-column flex-md-row align-items-center align-items-md-start justify-content-between gap-4">
+              <div class="d-flex flex-column flex-md-row align-items-center gap-4">
+                <img id="cAvatar" class="profile-avatar" src="" alt="Candidate" />
+                <div class="text-center text-md-start">
+                  <h2 id="cName" class="fw-bold m-0 mb-1" style="font-size: 22px">Candidate Name</h2>
+                  <p id="cPosition" class="text-secondary m-0 mb-2">Applied Position</p>
+                  <div class="d-flex align-items-center justify-content-center justify-content-md-start gap-2 flex-wrap">
+                    <span id="cStage" class="stage-pill stage-applied">Applied</span>
+                    <span class="text-secondary small d-flex align-items-center">
+                      <span class="material-symbols-outlined" style="font-size: 14px">calendar_today</span>
+                      Applied <span id="cAppliedDate">&nbsp;</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="d-flex gap-2 align-self-center align-self-md-start">
+                <button id="moveStageBtn" class="btn btn-outline-secondary btn-sm d-flex align-items-center gap-1">
+                  <span class="material-symbols-outlined" style="font-size: 16px">move_up</span> Move Stage
+                </button>
+                <button class="btn btn-outline-secondary btn-sm d-flex align-items-center justify-content-center">
+                  <span class="material-symbols-outlined" style="font-size: 18px">more_horiz</span>
+                </button>
+              </div>
+            </div>
+
+            <nav class="nav custom-nav-tabs mt-4" id="candTabs">
+              <a class="nav-link active-tab" data-tab="overview" href="#">Overview</a>
+              <a class="nav-link" data-tab="applications" href="#">Applications</a>
+              <a class="nav-link" data-tab="interviews" href="#">Interviews</a>
+              <a class="nav-link" data-tab="documents" href="#">Documents</a>
+              <a class="nav-link" data-tab="timeline" href="#">Timeline</a>
+            </nav>
+          </section>
+
+          <div id="tabContents">
+            <div id="overviewTab" class="tab-pane-content show-tab">
+              <div class="row g-3 mb-3">
+                <div class="col-12 col-lg-6">
+                  <div class="panel h-100">
+                    <div class="panel-head">
+                      <h3 class="panel-title">Personal Information</h3>
+                      <span class="material-symbols-outlined text-muted" style="font-size: 18px">info</span>
+                    </div>
+                    <div class="row g-3">
+                      <div class="col-6">
+                        <label class="text-muted small mb-1 d-block">Email Address</label>
+                        <p id="cEmail" class="mb-0">candidate@mail.com</p>
+                      </div>
+                      <div class="col-6">
+                        <label class="text-muted small mb-1 d-block">Phone Number</label>
+                        <p class="mb-0">+1 (555) 040-1122</p>
+                      </div>
+                      <div class="col-6">
+                        <label class="text-muted small mb-1 d-block">Address</label>
+                        <p class="mb-0">88 Riverside Dr, Austin, TX</p>
+                      </div>
+                      <div class="col-6">
+                        <label class="text-muted small mb-1 d-block">Gender</label>
+                        <p class="mb-0">Female</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-12 col-lg-6">
+                  <div class="panel h-100">
+                    <div class="panel-head">
+                      <h3 class="panel-title">Resume</h3>
+                      <span class="material-symbols-outlined text-muted" style="font-size: 18px">description</span>
+                    </div>
+                    <div class="doc-card">
+                      <div class="doc-icon"><span class="material-symbols-outlined">picture_as_pdf</span></div>
+                      <div class="flex-grow-1">
+                        <p id="cResumeName" class="mb-0 fw-semibold small">Resume.pdf</p>
+                        <p class="mb-0 text-muted" style="font-size: 12px">Uploaded Jun 28, 2026</p>
+                      </div>
+                      <button class="btn btn-outline-secondary btn-sm d-flex align-items-center gap-1">
+                        <span class="material-symbols-outlined" style="font-size: 16px">download</span> Download
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div id="applicationsTab" class="tab-pane-content">
+              <div class="panel p-0 overflow-hidden">
+                <div class="panel-head px-3 pt-3">
+                  <h3 class="panel-title">Application History</h3>
+                </div>
+                <div class="table-responsive">
+                  <table class="table align-middle mb-0">
+                    <thead><tr><th class="ps-3">Position</th><th>Department</th><th>Stage</th><th class="pe-3">Applied</th></tr></thead>
+                    <tbody>
+                      <tr>
+                        <td class="ps-3" id="cAppPosition">Senior Full Stack Developer</td>
+                        <td>Engineering</td>
+                        <td><span class="stage-pill stage-interview">Interview</span></td>
+                        <td class="pe-3" id="cAppDate">Jul 5, 2026</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <div id="interviewsTab" class="tab-pane-content">
+              <div class="panel"><h3 class="panel-title mb-2">Scheduled Interviews</h3><p class="text-muted mb-0">No interviews scheduled yet. <a href="interviews.html">Schedule one</a>.</p></div>
+            </div>
+            <div id="documentsTab" class="tab-pane-content">
+              <div class="panel">
+                <h3 class="panel-title mb-3">Documents</h3>
+                <div class="doc-card">
+                  <div class="doc-icon"><span class="material-symbols-outlined">picture_as_pdf</span></div>
+                  <div class="flex-grow-1">
+                    <p class="mb-0 fw-semibold small">Cover_Letter.pdf</p>
+                    <p class="mb-0 text-muted" style="font-size: 12px">Uploaded Jun 28, 2026</p>
+                  </div>
+                  <button class="btn btn-outline-secondary btn-sm d-flex align-items-center gap-1">
+                    <span class="material-symbols-outlined" style="font-size: 16px">download</span> Download
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div id="timelineTab" class="tab-pane-content">
+              <div class="panel">
+                <h3 class="panel-title mb-3">Recruitment Timeline</h3>
+                <div class="rec-timeline">
+                  <div class="rec-timeline-item done">
+                    <div class="rec-timeline-dot"><span class="material-symbols-outlined">check</span></div>
+                    <p class="fw-semibold mb-0 small">Application Submitted</p>
+                    <p class="text-muted mb-0" style="font-size: 12px">Jul 5, 2026</p>
+                  </div>
+                  <div class="rec-timeline-item done">
+                    <div class="rec-timeline-dot"><span class="material-symbols-outlined">check</span></div>
+                    <p class="fw-semibold mb-0 small">Screening</p>
+                    <p class="text-muted mb-0" style="font-size: 12px">Jul 7, 2026 · Reviewed by HR</p>
+                  </div>
+                  <div class="rec-timeline-item current">
+                    <div class="rec-timeline-dot"><span class="material-symbols-outlined">schedule</span></div>
+                    <p class="fw-semibold mb-0 small">Interview</p>
+                    <p class="text-muted mb-0" style="font-size: 12px">Scheduled for Jul 14, 2026</p>
+                  </div>
+                  <div class="rec-timeline-item">
+                    <div class="rec-timeline-dot"><span class="material-symbols-outlined">flag</span></div>
+                    <p class="fw-semibold mb-0 small">Decision</p>
+                    <p class="text-muted mb-0" style="font-size: 12px">Pending</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    @section Scripts
+{
+    <script src="~/js/recruitment/candidate-details-app.js"></script>
+}

@@ -1,0 +1,90 @@
+@{
+    ViewData["Title"] = "Departments";
+}
+<div class="app">
+      <aside class="sidebar" id="sidebar"></aside>
+
+      <div class="main">
+        <header class="topbar" id="topbar"></header>
+
+        <div class="content">
+          <div class="d-flex justify-content-between align-items-end mb-4">
+            <div>
+              <h1 style="font-size: 24px; font-weight: 700; color: var(--text)">Departments</h1>
+              <div class="panel-sub">Manage organizational structure and teams</div>
+            </div>
+            <button id="addDepartmentBtn" class="btn btn-primary btn-sm d-flex align-items-center gap-1">
+              <span class="material-symbols-outlined" style="font-size: 18px">add</span> Add Department
+            </button>
+          </div>
+
+          <div class="row g-3 mb-4">
+            <div class="col-md-4">
+              <div class="kpi-card d-flex align-items-center gap-3">
+                <span class="material-symbols-outlined kpi-icon icon-primary">corporate_fare</span>
+                <div>
+                  <div class="kpi-label text-uppercase">Total Departments</div>
+                  <div class="kpi-value" style="font-size: 22px">12</div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="kpi-card d-flex align-items-center gap-3">
+                <span class="material-symbols-outlined kpi-icon icon-tertiary">groups</span>
+                <div>
+                  <div class="kpi-label text-uppercase">Avg. Team Size</div>
+                  <div class="kpi-value" style="font-size: 22px">48</div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="kpi-card d-flex align-items-center gap-3">
+                <span class="material-symbols-outlined kpi-icon icon-danger">person_add</span>
+                <div>
+                  <div class="kpi-label text-uppercase">Dept. with Vacancies</div>
+                  <div class="kpi-value" style="font-size: 22px">4</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel mb-4 d-flex flex-wrap gap-3 align-items-center">
+            <div class="search flex-grow-1" style="min-width: 240px">
+              <span class="material-symbols-outlined">filter_list</span>
+              <input id="deptSearchInput" type="text" placeholder="Search by name..." style="width: 100%" />
+            </div>
+            <select id="managerFilter" class="form-select form-select-sm w-auto">
+              <option value="all">All Managers</option>
+              <option value="Robert Fox">Robert Fox</option>
+              <option value="Kristin Watson">Kristin Watson</option>
+              <option value="Arlene McCoy">Arlene McCoy</option>
+              <option value="Guy Hawkins">Guy Hawkins</option>
+              <option value="Eleanor Pena">Eleanor Pena</option>
+              <option value="Jacob Jones">Jacob Jones</option>
+            </select>
+            <select id="statusFilter" class="form-select form-select-sm w-auto">
+              <option value="all">All Status</option>
+              <option value="active">Active</option>
+              <option value="inactive">Inactive</option>
+            </select>
+            <button id="clearFiltersBtn" class="btn btn-link btn-sm text-decoration-none">Clear Filters</button>
+          </div>
+
+          <div id="departmentsGrid" class="row g-3"></div>
+
+          <div class="mt-4 d-flex justify-content-between align-items-center py-3 border-top">
+            <p id="paginationInfo" class="text-muted small mb-0">Showing 6 of 12 departments</p>
+            <div class="d-flex gap-1">
+              <button class="btn btn-sm btn-outline-secondary" disabled>Previous</button>
+              <button class="btn btn-sm btn-primary">1</button>
+              <button class="btn btn-sm btn-outline-secondary">2</button>
+              <button class="btn btn-sm btn-outline-secondary">Next</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    @section Scripts
+{
+    <script src="~/js/departments/departments-app.js"></script>
+}

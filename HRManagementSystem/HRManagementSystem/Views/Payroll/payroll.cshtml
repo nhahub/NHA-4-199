@@ -1,0 +1,139 @@
+@{
+    ViewData["Title"] = "Payroll";
+}
+<div class="app">
+      <aside class="sidebar" id="sidebar"></aside>
+
+      <div class="main">
+        <header class="topbar" id="topbar"></header>
+
+        <div class="content">
+          <div class="subnav-wrap">
+            <nav class="nav custom-nav-tabs">
+              <a class="nav-link active-tab" href="payroll.html">Overview</a>
+              <a class="nav-link" href="payroll-run.html">Run Payroll</a>
+            </nav>
+          </div>
+
+          <div class="d-flex justify-content-between align-items-end mb-4 flex-wrap gap-3">
+            <div>
+              <h1 style="font-size: 24px; font-weight: 700; color: var(--text)">Payroll Overview</h1>
+              <div class="panel-sub">Cost trends, salary distribution and payment status.</div>
+            </div>
+            <a href="payroll-run.html" class="btn btn-primary btn-sm d-flex align-items-center gap-1">
+              <span class="material-symbols-outlined" style="font-size: 18px">play_arrow</span>Run Payroll
+            </a>
+          </div>
+
+          <!-- Stats -->
+          <div class="row g-3 mb-3">
+            <div class="col-md-6 col-xl-3">
+              <div class="kpi-card">
+                <div class="kpi-head">
+                  <span class="kpi-label">Total Payroll</span>
+                  <span class="material-symbols-outlined kpi-icon icon-primary">payments</span>
+                </div>
+                <div class="kpi-value">$1.86M</div>
+                <div class="kpi-foot text-success">
+                  <span class="material-symbols-outlined" style="font-size: 16px">trending_up</span>
+                  +2.1% vs last period
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-xl-3">
+              <div class="kpi-card">
+                <div class="kpi-head">
+                  <span class="kpi-label">Employees Paid</span>
+                  <span class="material-symbols-outlined kpi-icon icon-success">group</span>
+                </div>
+                <div class="kpi-value">1,231</div>
+                <div class="kpi-foot text-muted">of 1,248 total employees</div>
+              </div>
+            </div>
+            <div class="col-md-6 col-xl-3">
+              <div class="kpi-card">
+                <div class="kpi-head">
+                  <span class="kpi-label">Pending Payroll</span>
+                  <span class="material-symbols-outlined kpi-icon icon-warning">schedule</span>
+                </div>
+                <div class="kpi-value">17</div>
+                <div class="kpi-foot text-muted">Awaiting processing</div>
+              </div>
+            </div>
+            <div class="col-md-6 col-xl-3">
+              <div class="kpi-card">
+                <div class="kpi-head">
+                  <span class="kpi-label">Current Period</span>
+                  <span class="material-symbols-outlined kpi-icon icon-tertiary">calendar_month</span>
+                </div>
+                <div class="kpi-value" style="font-size: 20px">July 2026</div>
+                <div class="kpi-foot text-muted">Pay date: Jul 31, 2026</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Charts -->
+          <div class="row g-3 mb-3">
+            <div class="col-xl-8">
+              <div class="panel">
+                <div class="panel-head">
+                  <div>
+                    <h6 class="panel-title">Payroll Cost Trend</h6>
+                    <div class="panel-sub">Total disbursed, last 6 pay periods</div>
+                  </div>
+                </div>
+                <div style="height: 250px">
+                  <canvas id="payrollTrendChart"></canvas>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-4">
+              <div class="panel">
+                <div class="panel-head">
+                  <div>
+                    <h6 class="panel-title">Salary Distribution</h6>
+                    <div class="panel-sub">By department, this period</div>
+                  </div>
+                </div>
+                <div style="height: 220px">
+                  <canvas id="salaryDistChart"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Table -->
+          <div class="panel p-0 overflow-hidden">
+            <div class="panel-head px-3 pt-3">
+              <div>
+                <h6 class="panel-title">Payroll Register</h6>
+                <div class="panel-sub">Individual pay breakdown, current period</div>
+              </div>
+              <button class="btn btn-outline-secondary btn-sm d-flex align-items-center gap-1">
+                <span class="material-symbols-outlined" style="font-size: 16px">download</span>Export
+              </button>
+            </div>
+            <div class="table-responsive">
+              <table class="table align-middle mb-0">
+                <thead>
+                  <tr>
+                    <th class="ps-3">Employee</th>
+                    <th>Period</th>
+                    <th>Base Salary</th>
+                    <th>Allowances</th>
+                    <th>Deductions</th>
+                    <th>Net Salary</th>
+                    <th class="pe-3">Status</th>
+                  </tr>
+                </thead>
+                <tbody id="payrollBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    @section Scripts
+{
+    <script src="~/js/payroll/payroll-app.js"></script>
+}

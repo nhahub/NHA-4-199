@@ -1,0 +1,103 @@
+@{
+ViewData["Title"] = "Shifts";
+}
+<div class="app">
+      <aside class="sidebar" id="sidebar"></aside>
+
+      <div class="main">
+        <header class="topbar" id="topbar"></header>
+
+        <div class="content">
+          <div class="subnav-wrap">
+            <nav class="nav custom-nav-tabs">
+              <a class="nav-link" href="admin-users.html">Users</a>
+              <a class="nav-link" href="admin-roles.html">Roles &amp; Permissions</a>
+              <a class="nav-link active-tab" href="admin-shifts.html">Work Shifts</a>
+              <a class="nav-link" href="admin-settings.html">Settings</a>
+            </nav>
+          </div>
+
+          <div class="d-flex justify-content-between align-items-end mb-4 flex-wrap gap-3">
+            <div>
+              <h1 style="font-size: 24px; font-weight: 700; color: var(--text)">Work Shifts</h1>
+              <div class="panel-sub">Configure employee working schedules.</div>
+            </div>
+            <button id="addShiftBtn" class="btn btn-primary btn-sm d-flex align-items-center gap-1">
+              <span class="material-symbols-outlined" style="font-size: 18px">add</span>Add Shift
+            </button>
+          </div>
+
+          <div class="panel p-0 overflow-hidden">
+            <div class="table-responsive">
+              <table class="table align-middle mb-0">
+                <thead>
+                  <tr>
+                    <th class="ps-4">Shift Name</th>
+                    <th>Start Time</th>
+                    <th>End Time</th>
+                    <th>Late Threshold</th>
+                    <th>Half Day Threshold</th>
+                    <th>Status</th>
+                    <th class="text-end pe-4">Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="shiftBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Create / Edit shift modal -->
+    <div class="modal fade" id="shiftModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="shiftModalTitle">Add Shift</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <form id="shiftForm">
+            <div class="modal-body">
+              <input type="hidden" id="shiftId" />
+              <div class="mb-3">
+                <label class="form-label small fw-semibold" for="shiftName">Shift Name</label>
+                <input type="text" id="shiftName" class="form-control" placeholder="e.g. General Shift" required />
+              </div>
+              <div class="row g-3 mb-3">
+                <div class="col-6">
+                  <label class="form-label small fw-semibold" for="shiftStart">Start Time</label>
+                  <input type="time" id="shiftStart" class="form-control" required />
+                </div>
+                <div class="col-6">
+                  <label class="form-label small fw-semibold" for="shiftEnd">End Time</label>
+                  <input type="time" id="shiftEnd" class="form-control" required />
+                </div>
+              </div>
+              <div class="row g-3 mb-3">
+                <div class="col-6">
+                  <label class="form-label small fw-semibold" for="lateThreshold">Late Threshold (minutes)</label>
+                  <input type="number" id="lateThreshold" class="form-control" min="0" placeholder="15" required />
+                </div>
+                <div class="col-6">
+                  <label class="form-label small fw-semibold" for="halfDayThreshold">Half Day Threshold (hours)</label>
+                  <input type="number" id="halfDayThreshold" class="form-control" min="0" step="0.5" placeholder="4" required />
+                </div>
+              </div>
+              <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="shiftActive" checked />
+                <label class="form-check-label small fw-semibold" for="shiftActive">Active</label>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-dismiss="modal">Cancel</button>
+              <button type="submit" class="btn btn-primary btn-sm">Save Shift</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+@section Scripts
+{
+<script src="~/js/admin/admin-shifts-app.js"></script>
+}

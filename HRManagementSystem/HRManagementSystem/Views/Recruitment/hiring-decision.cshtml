@@ -1,0 +1,131 @@
+@{
+    ViewData["Title"] = "Hiring Decision";
+}
+<div class="app">
+      <aside class="sidebar" id="sidebar"></aside>
+
+      <div class="main">
+        <header class="topbar" id="topbar"></header>
+
+        <div class="content">
+          <div class="subnav-wrap">
+            <nav class="nav custom-nav-tabs">
+              <a class="nav-link" href="recruitment.html">Overview</a>
+              <a class="nav-link" href="requisitions.html">Requisitions</a>
+              <a class="nav-link" href="applications.html">Applications</a>
+              <a class="nav-link" href="interviews.html">Interviews</a>
+              <a class="nav-link active-tab" href="hiring-decision.html">Hiring Decisions</a>
+            </nav>
+          </div>
+
+          <div class="mb-4">
+            <h1 style="font-size: 24px; font-weight: 700; color: var(--text)">Hiring Decision</h1>
+            <div class="panel-sub">Review the interview outcome and record the final hiring decision.</div>
+          </div>
+
+          <!-- Candidate summary -->
+          <section class="panel mb-3">
+            <div class="d-flex flex-wrap justify-content-between align-items-center gap-4">
+              <div class="d-flex align-items-center gap-3">
+                <img id="hAvatar" class="profile-avatar" style="width:64px;height:64px" src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=200&auto=format&fit=crop&q=60" alt="Candidate" />
+                <div>
+                  <h3 id="hName" class="fw-bold mb-1" style="font-size: 18px">Jack Shephard</h3>
+                  <p class="text-muted mb-0 small">
+                    <span id="hPosition">DevOps Engineer</span> · <span id="hDept">Engineering</span>
+                  </p>
+                </div>
+              </div>
+              <div class="d-flex gap-4 flex-wrap">
+                <div>
+                  <p class="text-muted mb-0 text-uppercase" style="font-size: 11px">Interview Status</p>
+                  <p class="fw-semibold mb-0"><span class="chip chip-success">Completed</span></p>
+                </div>
+                <div>
+                  <p class="text-muted mb-0 text-uppercase" style="font-size: 11px">Final Round Score</p>
+                  <p class="fw-semibold mb-0">4.5 / 5</p>
+                </div>
+                <div>
+                  <p class="text-muted mb-0 text-uppercase" style="font-size: 11px">Requisition</p>
+                  <p class="fw-semibold mb-0">REQ-1042</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Approval timeline -->
+          <section class="panel mb-3">
+            <h4 class="panel-title mb-4">Approval Timeline</h4>
+            <div class="approval-track">
+              <div class="approval-step done">
+                <div class="step-dot"><span class="material-symbols-outlined" style="font-size:16px">check</span></div>
+                <p class="step-label mb-0">Recruiter Recommendation</p>
+                <p class="step-sub mb-0">Approved by Robert Fox · Jul 8, 2026</p>
+              </div>
+              <div class="approval-step active">
+                <div class="step-dot">2</div>
+                <p class="step-label mb-0">Manager Approval</p>
+                <p class="step-sub mb-0">Awaiting Kristin Watson</p>
+              </div>
+              <div class="approval-step">
+                <div class="step-dot">3</div>
+                <p class="step-label mb-0">Final Hiring Status</p>
+                <p class="step-sub mb-0">Not started</p>
+              </div>
+            </div>
+          </section>
+
+          <div class="row g-3">
+            <!-- Decision -->
+            <div class="col-12 col-lg-7">
+              <section class="panel h-100">
+                <h4 class="panel-title mb-3">Record Decision</h4>
+                <div class="mb-3">
+                  <label class="text-muted small mb-1 d-block">Approval Notes</label>
+                  <textarea id="decisionNotes" class="form-control" rows="4" placeholder="Add context for this decision..."></textarea>
+                </div>
+                <div class="decision-actions">
+                  <button id="approveBtn" class="btn btn-success d-flex align-items-center gap-1 justify-content-center">
+                    <span class="material-symbols-outlined" style="font-size: 18px">check_circle</span> Approve Hire
+                  </button>
+                  <button id="rejectBtn" class="btn btn-outline-danger d-flex align-items-center gap-1 justify-content-center">
+                    <span class="material-symbols-outlined" style="font-size: 18px">cancel</span> Reject Candidate
+                  </button>
+                  <button id="requestChangesBtn" class="btn btn-outline-secondary d-flex align-items-center gap-1 justify-content-center">
+                    <span class="material-symbols-outlined" style="font-size: 18px">edit_note</span> Request Changes
+                  </button>
+                </div>
+              </section>
+            </div>
+
+            <!-- Approver info -->
+            <div class="col-12 col-lg-5">
+              <section class="panel h-100">
+                <h4 class="panel-title mb-3">Approver Information</h4>
+                <div class="row g-3">
+                  <div class="col-6">
+                    <label class="text-muted small mb-1 d-block">Approver</label>
+                    <p class="mb-0 fw-semibold">Kristin Watson</p>
+                  </div>
+                  <div class="col-6">
+                    <label class="text-muted small mb-1 d-block">Role</label>
+                    <p class="mb-0">Hiring Manager</p>
+                  </div>
+                  <div class="col-6">
+                    <label class="text-muted small mb-1 d-block">Decision Date</label>
+                    <p id="decisionDate" class="mb-0 text-muted">Not yet recorded</p>
+                  </div>
+                  <div class="col-6">
+                    <label class="text-muted small mb-1 d-block">Current Status</label>
+                    <p id="decisionStatus" class="mb-0"><span class="chip chip-warning">Pending Review</span></p>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    @section Scripts
+{
+    <script src="~/js/recruitment/hiring-decision-app.js"></script>
+}

@@ -1,0 +1,105 @@
+@{
+    ViewData["Title"] = "Create Leave Request";
+}
+<div class="app">
+      <aside class="sidebar" id="sidebar"></aside>
+
+      <div class="main">
+        <header class="topbar" id="topbar"></header>
+
+        <div class="content">
+          <div class="subnav-wrap">
+            <nav class="nav custom-nav-tabs">
+              <a class="nav-link" href="leave.html">Overview</a>
+              <a class="nav-link" href="leave-requests.html">Requests</a>
+              <a class="nav-link active-tab" href="leave-create.html">Request Leave</a>
+            </nav>
+          </div>
+
+          <div class="mb-4">
+            <h1 style="font-size: 24px; font-weight: 700; color: var(--text)">Request Leave</h1>
+            <div class="panel-sub">Submit a new leave request for approval.</div>
+          </div>
+
+          <form id="leaveForm" novalidate>
+            <div class="row g-3">
+              <div class="col-12 col-lg-8">
+                <div class="panel h-100">
+                  <h4 class="panel-title mb-3">Request Details</h4>
+
+                  <div class="mb-3">
+                    <label class="form-label small fw-semibold" for="leaveType">Leave Type</label>
+                    <select id="leaveType" class="form-select" required>
+                      <option value="" selected disabled>Select leave type...</option>
+                      <option value="Annual">Annual Leave</option>
+                      <option value="Sick">Sick Leave</option>
+                      <option value="Casual">Casual Leave</option>
+                      <option value="Unpaid">Unpaid Leave</option>
+                      <option value="Parental">Parental Leave</option>
+                    </select>
+                  </div>
+
+                  <div class="row g-3 mb-3">
+                    <div class="col-6">
+                      <label class="form-label small fw-semibold" for="startDate">Start Date</label>
+                      <input type="date" id="startDate" class="form-control" required />
+                    </div>
+                    <div class="col-6">
+                      <label class="form-label small fw-semibold" for="endDate">End Date</label>
+                      <input type="date" id="endDate" class="form-control" required />
+                    </div>
+                  </div>
+
+                  <p class="text-muted small mb-3" id="dayCountLabel">Select a start and end date to calculate duration.</p>
+
+                  <div class="mb-3">
+                    <label class="form-label small fw-semibold" for="reason">Reason</label>
+                    <textarea id="reason" class="form-control" rows="4" placeholder="Briefly describe the reason for this leave request..." required></textarea>
+                  </div>
+
+                  <div>
+                    <label class="form-label small fw-semibold">Attachment <span class="text-muted fw-normal">(optional — e.g. medical certificate)</span></label>
+                    <div id="uploadBox" class="upload-box">
+                      <span class="material-symbols-outlined">upload_file</span>
+                      <span class="small">Click to upload or drag a file here</span>
+                      <div class="text-muted" style="font-size: 11px">PDF, JPG or PNG · Max 5MB</div>
+                    </div>
+                    <input type="file" id="fileInput" class="d-none" accept=".pdf,.jpg,.jpeg,.png" />
+                    <div id="fileNameWrap"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-12 col-lg-4">
+                <div class="panel h-100 d-flex flex-column">
+                  <h4 class="panel-title mb-3">Leave Balance</h4>
+                  <div class="balance-row">
+                    <span class="balance-label">Available Balance</span>
+                    <span class="balance-value" id="balAvailable">18 days</span>
+                  </div>
+                  <div class="balance-row">
+                    <span class="balance-label">Used This Year</span>
+                    <span class="balance-value" id="balUsed">6 days</span>
+                  </div>
+                  <div class="balance-row highlight">
+                    <span class="balance-label">Remaining After This Request</span>
+                    <span class="balance-value" id="balRemaining">18 days</span>
+                  </div>
+
+                  <div class="mt-auto pt-3 d-flex flex-column gap-2">
+                    <button type="submit" class="btn btn-primary d-flex align-items-center justify-content-center gap-1">
+                      <span class="material-symbols-outlined" style="font-size: 18px">send</span>Submit Request
+                    </button>
+                    <button type="button" id="cancelBtn" class="btn btn-outline-secondary">Cancel</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    @section Scripts
+{
+    <script src="~/js/leave/leave-create-app.js"></script>
+}

@@ -1,0 +1,120 @@
+@{
+    ViewData["Title"] = "My Attendance";
+}
+<div class="app">
+      <aside class="sidebar" id="sidebar"></aside>
+
+      <div class="main">
+        <header class="topbar" id="topbar"></header>
+
+        <div class="content">
+          <div class="subnav-wrap">
+            <nav class="nav custom-nav-tabs">
+              <a class="nav-link" href="attendance-records.html">Records</a>
+              <a class="nav-link active-tab" href="my-attendance.html">My Attendance</a>
+            </nav>
+          </div>
+
+          <div class="mb-4">
+            <h1 style="font-size: 24px; font-weight: 700; color: var(--text)">My Attendance</h1>
+            <div class="panel-sub">Check in, check out, and review your attendance history.</div>
+          </div>
+
+          <div class="row g-3 mb-3">
+            <div class="col-12 col-lg-5">
+              <div class="today-card">
+                <span class="today-date" id="todayDate">Thursday, July 9, 2026</span>
+                <div class="today-clock" id="liveClock">--:--:--</div>
+
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <span class="text-muted small">Shift</span>
+                  <span class="fw-semibold small" id="todayShift">General (9:00 AM - 6:00 PM)</span>
+                </div>
+
+                <div class="punch-grid">
+                  <div class="punch-item">
+                    <span class="punch-label">Check In</span>
+                    <span class="punch-value" id="punchInVal">—</span>
+                  </div>
+                  <div class="punch-item">
+                    <span class="punch-label">Check Out</span>
+                    <span class="punch-value" id="punchOutVal">—</span>
+                  </div>
+                  <div class="punch-item">
+                    <span class="punch-label">Status</span>
+                    <span class="punch-value"><span id="todayStatus" class="badge-status status-late" style="font-size:11px">Not Checked In</span></span>
+                  </div>
+                </div>
+
+                <div class="punch-actions">
+                  <button id="checkInBtn" class="btn btn-primary d-flex align-items-center gap-1 justify-content-center">
+                    <span class="material-symbols-outlined" style="font-size: 18px">login</span>Check In
+                  </button>
+                  <button id="checkOutBtn" class="btn btn-outline-secondary d-flex align-items-center gap-1 justify-content-center" disabled>
+                    <span class="material-symbols-outlined" style="font-size: 18px">logout</span>Check Out
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-lg-7">
+              <div class="panel h-100">
+                <div class="panel-head">
+                  <div>
+                    <h6 class="panel-title">This Month</h6>
+                    <div class="panel-sub">Attendance summary, July 2026</div>
+                  </div>
+                </div>
+                <div class="row g-3">
+                  <div class="col-6 col-md-3">
+                    <p class="text-muted mb-1 text-uppercase" style="font-size: 11px">Present</p>
+                    <p class="fw-bold mb-0" style="font-size: 20px">6</p>
+                  </div>
+                  <div class="col-6 col-md-3">
+                    <p class="text-muted mb-1 text-uppercase" style="font-size: 11px">Late</p>
+                    <p class="fw-bold mb-0" style="font-size: 20px">1</p>
+                  </div>
+                  <div class="col-6 col-md-3">
+                    <p class="text-muted mb-1 text-uppercase" style="font-size: 11px">Absent</p>
+                    <p class="fw-bold mb-0" style="font-size: 20px">0</p>
+                  </div>
+                  <div class="col-6 col-md-3">
+                    <p class="text-muted mb-1 text-uppercase" style="font-size: 11px">On Leave</p>
+                    <p class="fw-bold mb-0" style="font-size: 20px">1</p>
+                  </div>
+                </div>
+                <hr class="my-3" style="border-color: var(--border)" />
+                <p class="text-muted small mb-0">Your average check-in time this month is <strong style="color:var(--text)">8:54 AM</strong>, with an average of <strong style="color:var(--text)">8h 52m</strong> worked per day.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel p-0 overflow-hidden">
+            <div class="panel-head px-3 pt-3">
+              <div>
+                <h6 class="panel-title">Attendance History</h6>
+                <div class="panel-sub">Your check-in and check-out records</div>
+              </div>
+            </div>
+            <div class="table-responsive">
+              <table class="table align-middle mb-0">
+                <thead>
+                  <tr>
+                    <th class="ps-3">Date</th>
+                    <th>Check In</th>
+                    <th>Check Out</th>
+                    <th>Working Hours</th>
+                    <th class="pe-3">Status</th>
+                  </tr>
+                </thead>
+                <tbody id="myAttBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    @section Scripts
+{
+    <script src="~/js/attendance/my-attendance-app.js"></script>
+}

@@ -1,0 +1,333 @@
+/* modules-admin.css — additive component styles for Payslip, Admin (Users/Roles/Shifts/Settings),
+   the master layout shell and the reusable data table component.
+   Loaded after theme.css + modules.css + modules-hr.css. Reuses existing HRMS tokens only. */
+
+/* ===== Payslip document ===== */
+.payslip-doc {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 32px;
+  max-width: 860px;
+  margin: 0 auto;
+}
+.payslip-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 20px;
+}
+.payslip-head .payslip-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0 0 4px;
+}
+.payslip-head .payslip-company {
+  font-size: 12px;
+  color: var(--muted);
+}
+.payslip-head .payslip-period {
+  text-align: right;
+}
+.payslip-head .payslip-period .label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: var(--muted);
+}
+.payslip-head .payslip-period .value {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+}
+.payslip-info-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 20px;
+}
+.payslip-info-grid .info-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  color: var(--muted);
+  margin-bottom: 2px;
+}
+.payslip-info-grid .info-value {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--text);
+}
+.payslip-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 20px;
+}
+.payslip-col-title {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: var(--muted);
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+.payslip-line {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  font-size: 13.5px;
+  border-bottom: 1px solid #f1f3f7;
+}
+.payslip-line .payslip-line-label { color: var(--text); }
+.payslip-line .payslip-line-value { font-weight: 600; color: var(--text); }
+.payslip-subtotal {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 10px;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--text);
+}
+.payslip-net {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid var(--primary);
+  background: rgba(0, 87, 205, 0.04);
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin-bottom: 4px;
+}
+.payslip-net .net-label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: var(--secondary);
+  font-weight: 700;
+}
+.payslip-net .net-value {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--primary);
+  letter-spacing: -0.4px;
+}
+.payslip-foot-note {
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 14px;
+  text-align: center;
+}
+
+@media print {
+  .sidebar, .topbar, .subnav-wrap, .no-print { display: none !important; }
+  .main, .content { padding: 0 !important; margin: 0 !important; }
+  body { background: #fff !important; }
+  .payslip-doc { border: none; padding: 0; max-width: 100%; }
+}
+
+/* ===== Admin Users table ===== */
+.role-badge {
+  padding: 3px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  display: inline-block;
+}
+.role-admin { background: rgba(220, 53, 69, 0.1); color: var(--danger); }
+.role-hr { background: rgba(0, 87, 205, 0.12); color: var(--primary); }
+.role-payroll { background: rgba(0, 103, 124, 0.1); color: var(--tertiary); }
+.role-hiring { background: rgba(245, 158, 11, 0.15); color: #b45309; }
+.role-employee { background: #eef1f6; color: var(--secondary); }
+
+.account-status-active { background: rgba(25, 135, 84, 0.15); color: #0f6c3f; }
+.account-status-disabled { background: rgba(220, 53, 69, 0.12); color: var(--danger); }
+.account-status-invited { background: rgba(245, 158, 11, 0.15); color: #b45309; }
+
+/* ===== Admin Roles / permission matrix ===== */
+.role-list-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  color: var(--text);
+  font-weight: 600;
+  font-size: 13.5px;
+  border: 1px solid transparent;
+}
+.role-list-item:hover { background: #f8fafc; }
+.role-list-item.active {
+  background: rgba(0, 87, 205, 0.08);
+  border-color: rgba(0, 87, 205, 0.25);
+  color: var(--primary);
+}
+.role-list-item .role-count {
+  font-size: 11px;
+  color: var(--muted);
+  font-weight: 500;
+}
+.role-list-item.active .role-count { color: var(--primary); }
+
+.perm-table th {
+  text-align: center;
+  font-size: 11px;
+}
+.perm-table th:first-child { text-align: left; }
+.perm-table td { text-align: center; }
+.perm-table td:first-child {
+  text-align: left;
+  font-weight: 600;
+  color: var(--text);
+}
+.perm-table .form-check {
+  display: flex;
+  justify-content: center;
+  margin: 0;
+}
+
+/* ===== Admin Shifts ===== */
+.shift-color-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  display: inline-block;
+  margin-right: 6px;
+  background: var(--primary);
+}
+
+/* ===== Admin Settings ===== */
+.settings-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.settings-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  color: var(--secondary);
+  font-weight: 600;
+  font-size: 13.5px;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  text-align: left;
+  width: 100%;
+}
+.settings-nav-item .material-symbols-outlined { font-size: 19px; color: var(--muted); }
+.settings-nav-item:hover { background: #f8fafc; }
+.settings-nav-item.active {
+  background: rgba(0, 87, 205, 0.08);
+  color: var(--primary);
+}
+.settings-nav-item.active .material-symbols-outlined { color: var(--primary); }
+.settings-pane { display: none; }
+.settings-pane.show-pane { display: block; }
+.settings-section-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+.settings-section-sub {
+  font-size: 12.5px;
+  color: var(--muted);
+  margin-bottom: 20px;
+}
+.logo-upload-box {
+  width: 72px;
+  height: 72px;
+  border-radius: 10px;
+  border: 1.5px dashed var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+/* ===== Master layout (_Layout.cshtml) ===== */
+.breadcrumb-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12.5px;
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+.breadcrumb-bar a { color: var(--muted); text-decoration: none; }
+.breadcrumb-bar a:hover { color: var(--primary); }
+.breadcrumb-bar .current { color: var(--text); font-weight: 600; }
+.mobile-nav-toggle {
+  display: none;
+  border: 1px solid var(--border);
+  background: #fff;
+  border-radius: 8px;
+  width: 36px;
+  height: 36px;
+  align-items: center;
+  justify-content: center;
+  color: var(--secondary);
+  cursor: pointer;
+}
+.sidebar-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.4);
+  z-index: 15;
+}
+@media (max-width: 992px) {
+  .mobile-nav-toggle { display: inline-flex; }
+  .sidebar.open { left: 0; }
+  .sidebar-backdrop.open { display: block; }
+}
+.notif-dropdown {
+  width: 320px;
+  padding: 0;
+  border: 1px solid var(--border);
+}
+.notif-dropdown .notif-item {
+  padding: 12px 16px;
+  border-bottom: 1px solid #f1f3f7;
+  font-size: 12.5px;
+}
+.notif-dropdown .notif-item:last-child { border-bottom: 0; }
+.notif-dropdown .notif-head {
+  padding: 12px 16px;
+  font-weight: 700;
+  font-size: 13px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* ===== Reusable data table component ===== */
+.dt-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+.dt-toolbar .form-select,
+.dt-toolbar input[type="date"] { height: 38px; }
+.dt-th-sortable {
+  cursor: pointer;
+  user-select: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+}

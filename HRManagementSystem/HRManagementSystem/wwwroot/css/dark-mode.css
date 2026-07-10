@@ -1,0 +1,286 @@
+/* dark-mode.css — HRMS Enterprise
+   Dark theme overrides + the theme-toggle switch component.
+   Activated by setting [data-bs-theme="dark"] on <html> (also unlocks
+   Bootstrap 5.3's native dark component styles for modals, dropdowns,
+   inputs, etc.). Loaded last so it always wins the cascade. */
+
+/* Smooth, professional transition when switching themes */
+body,
+.panel,
+.kpi-card,
+.topbar,
+.sidebar,
+.department-card,
+.today-card,
+.payslip-doc,
+.doc-card,
+.search input,
+.icon-btn,
+.role-list-item,
+.settings-nav-item {
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+/* ===== Core palette ===== */
+[data-bs-theme="dark"] {
+  --bg: #0d121e;
+  --panel: #161d2c;
+  --border: #2a3450;
+  --text: #e7ebf5;
+  --muted: #93a0b8;
+  --primary: #4c8dff;
+  --secondary: #a3aec4;
+  --tertiary: #35c2dd;
+  --success: #34d399;
+  --warning: #fbbf24;
+  --danger: #f87171;
+}
+
+[data-bs-theme="dark"] body {
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* ===== Shell ===== */
+[data-bs-theme="dark"] .topbar {
+  background: var(--panel);
+  border-color: var(--border);
+}
+[data-bs-theme="dark"] .sidebar {
+  background: #0a0e18;
+  border-color: #000;
+}
+[data-bs-theme="dark"] .nav-item:hover {
+  background: #161d2c;
+}
+
+/* ===== Surfaces ===== */
+[data-bs-theme="dark"] .panel,
+[data-bs-theme="dark"] .kpi-card,
+[data-bs-theme="dark"] .department-card,
+[data-bs-theme="dark"] .today-card,
+[data-bs-theme="dark"] .payslip-doc,
+[data-bs-theme="dark"] .doc-card,
+[data-bs-theme="dark"] .kanban-column,
+[data-bs-theme="dark"] .interview-time-badge,
+[data-bs-theme="dark"] .cal-cell,
+[data-bs-theme="dark"] .logo-upload-box,
+[data-bs-theme="dark"] .upload-box {
+  background: var(--panel);
+  border-color: var(--border);
+}
+[data-bs-theme="dark"] .cal-cell.other-month {
+  background: #0d1220;
+  color: #3c4560;
+}
+[data-bs-theme="dark"] .cal-cell.today {
+  background: rgba(76, 141, 255, 0.08);
+}
+[data-bs-theme="dark"] .kanban-column[style] {
+  background: #10182a !important;
+}
+[data-bs-theme="dark"] .department-card .dept-stats {
+  background: #10182a;
+}
+[data-bs-theme="dark"] .kanban-card,
+[data-bs-theme="dark"] .job-card {
+  background: #101828;
+  border-color: var(--border);
+}
+
+/* ===== Tables ===== */
+[data-bs-theme="dark"] .table td {
+  border-color: #232c40;
+}
+[data-bs-theme="dark"] .table thead th {
+  border-color: var(--border);
+}
+[data-bs-theme="dark"] .table-row-link:hover {
+  background: #1a2236;
+}
+[data-bs-theme="dark"] .table-footer {
+  background: #10182a;
+  border-color: var(--border);
+}
+[data-bs-theme="dark"] .skeleton-bar {
+  background: #232c40;
+}
+[data-bs-theme="dark"] .empty-state .material-symbols-outlined {
+  color: #3c4560;
+}
+
+/* ===== Inputs / search / icon buttons ===== */
+[data-bs-theme="dark"] .search input {
+  background: #0f1523;
+  border-color: var(--border);
+  color: var(--text);
+}
+[data-bs-theme="dark"] .search input:focus {
+  background: #0d121e;
+  border-color: var(--primary);
+}
+[data-bs-theme="dark"] .search input::placeholder {
+  color: #5c6784;
+}
+[data-bs-theme="dark"] .icon-btn {
+  background: transparent;
+  border-color: var(--border);
+  color: var(--secondary);
+}
+[data-bs-theme="dark"] .icon-btn:hover {
+  background: #1a2236;
+}
+
+/* ===== Nav tabs / lists ===== */
+[data-bs-theme="dark"] .custom-nav-tabs {
+  border-color: var(--border);
+}
+[data-bs-theme="dark"] .role-list-item:hover,
+[data-bs-theme="dark"] .settings-nav-item:hover {
+  background: #1a2236;
+}
+[data-bs-theme="dark"] .role-list-item.active {
+  background: rgba(76, 141, 255, 0.14);
+}
+[data-bs-theme="dark"] .settings-nav-item.active {
+  background: rgba(76, 141, 255, 0.14);
+}
+
+/* ===== Payslip / financial docs ===== */
+[data-bs-theme="dark"] .payslip-net {
+  background: rgba(76, 141, 255, 0.08);
+}
+
+/* ===== Misc borders on light-only accents ===== */
+[data-bs-theme="dark"] .balance-row,
+[data-bs-theme="dark"] .interview-item,
+[data-bs-theme="dark"] .payslip-line,
+[data-bs-theme="dark"] .event {
+  border-color: #232c40;
+}
+[data-bs-theme="dark"] hr {
+  border-color: var(--border) !important;
+}
+
+/* ===== Wizard (Run Payroll) ===== */
+[data-bs-theme="dark"] .wizard-step-head {
+  background: #10182a;
+  border-color: var(--border);
+}
+[data-bs-theme="dark"] .wizard-step-num {
+  background: #10182a;
+  border-color: var(--border);
+}
+[data-bs-theme="dark"] .wizard-panel {
+  background: var(--panel);
+  border-color: var(--border);
+}
+
+/* ===== Calendar (Interviews) ===== */
+[data-bs-theme="dark"] .cal-nav-btn {
+  background: #10182a;
+  border-color: var(--border);
+  color: var(--secondary);
+}
+[data-bs-theme="dark"] .cal-nav-btn:hover {
+  background: #1a2236;
+}
+
+/* ===== Recruitment timeline dots ===== */
+[data-bs-theme="dark"] .rec-timeline-dot {
+  background: #10182a;
+  border-color: var(--border);
+}
+
+/* ===== Approval stepper (Hiring Decision) ===== */
+[data-bs-theme="dark"] .approval-step .step-dot {
+  background: #10182a;
+  border-color: var(--border);
+}
+
+/* ===== Mobile sidebar toggle ===== */
+.mobile-nav-toggle {
+  display: none;
+  border: 1px solid var(--border);
+  background: transparent;
+  border-radius: 8px;
+  width: 36px;
+  height: 36px;
+  align-items: center;
+  justify-content: center;
+  color: var(--secondary);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.mobile-nav-toggle:hover {
+  background: #f1f4fa;
+}
+[data-bs-theme="dark"] .mobile-nav-toggle:hover {
+  background: #1a2236;
+}
+.sidebar-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.45);
+  z-index: 15;
+}
+@media (max-width: 992px) {
+  .mobile-nav-toggle {
+    display: inline-flex;
+  }
+  .sidebar.open {
+    left: 0 !important;
+  }
+  .sidebar-backdrop.open {
+    display: block;
+  }
+}
+
+/* ===== Theme toggle switch ===== */
+.theme-toggle {
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+}
+.theme-toggle-track {
+  width: 52px;
+  height: 28px;
+  border-radius: 999px;
+  background: #e2e6ee;
+  display: flex;
+  align-items: center;
+  padding: 3px;
+  position: relative;
+  transition: background-color 0.25s ease;
+}
+.theme-toggle-thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateX(0);
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.25s ease;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.3);
+}
+.theme-toggle-thumb .material-symbols-outlined {
+  font-size: 14px;
+  color: var(--warning);
+  transition: color 0.25s ease;
+}
+[data-bs-theme="dark"] .theme-toggle-track {
+  background: #232c47;
+}
+[data-bs-theme="dark"] .theme-toggle-thumb {
+  transform: translateX(24px);
+  background: #0d121e;
+}
+[data-bs-theme="dark"] .theme-toggle-thumb .material-symbols-outlined {
+  color: #7db3ff;
+}

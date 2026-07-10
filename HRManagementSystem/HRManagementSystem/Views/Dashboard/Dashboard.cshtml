@@ -1,0 +1,241 @@
+﻿@{ViewData["Title"] = "Dashboard";}
+<div class="app">
+      <aside class="sidebar" id="sidebar"></aside>
+
+      <div class="main">
+        <header class="topbar" id="topbar"></header>
+
+        <div class="content">
+          <div class="d-flex justify-content-end gap-2 mb-3">
+            <button class="btn btn-outline-secondary btn-sm d-flex align-items-center gap-1">
+              <span class="material-symbols-outlined" style="font-size: 18px">download</span>Export
+            </button>
+            <button class="btn btn-primary btn-sm d-flex align-items-center gap-1">
+              <span class="material-symbols-outlined" style="font-size: 18px">add</span>Create
+            </button>
+          </div>
+
+          <!-- KPI Cards -->
+          <div class="row g-3 mb-3">
+            <div class="col-md-6 col-xl-3">
+              <div class="kpi-card">
+                <div class="kpi-head">
+                  <span class="kpi-label">Total Employees</span>
+                  <span class="material-symbols-outlined kpi-icon icon-primary">group</span>
+                </div>
+                <div class="kpi-value">1,248</div>
+                <div class="kpi-foot text-success">
+                  <span class="material-symbols-outlined" style="font-size: 16px">trending_up</span>
+                  +4.2% this month
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-xl-3">
+              <div class="kpi-card">
+                <div class="kpi-head">
+                  <span class="kpi-label">Open Positions</span>
+                  <span class="material-symbols-outlined kpi-icon icon-tertiary">work</span>
+                </div>
+                <div class="kpi-value">12</div>
+                <div class="kpi-foot text-danger">3 urgent</div>
+              </div>
+            </div>
+            <div class="col-md-6 col-xl-3">
+              <div class="kpi-card">
+                <div class="kpi-head">
+                  <span class="kpi-label">Pending Leave</span>
+                  <span class="material-symbols-outlined kpi-icon icon-warning">event_busy</span>
+                </div>
+                <div class="kpi-value">24</div>
+                <div class="kpi-foot text-muted">Awaiting approval</div>
+              </div>
+            </div>
+            <div class="col-md-6 col-xl-3">
+              <div class="kpi-card">
+                <div class="kpi-head">
+                  <span class="kpi-label">Today's Attendance</span>
+                  <span class="material-symbols-outlined kpi-icon icon-success">how_to_reg</span>
+                </div>
+                <div class="kpi-value">94%</div>
+                <div class="kpi-foot text-success">1,173 present</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Charts -->
+          <div class="row g-3 mb-3">
+            <div class="col-xl-8">
+              <div class="panel">
+                <div class="panel-head">
+                  <div>
+                    <h6 class="panel-title">Employee Growth</h6>
+                    <div class="panel-sub">Headcount trend, last 10 months</div>
+                  </div>
+                  <select class="form-select form-select-sm w-auto">
+                    <option>Last 10 months</option>
+                    <option>Last 6 months</option>
+                    <option>Last year</option>
+                  </select>
+                </div>
+                <div style="height: 280px">
+                  <canvas id="growthChart"></canvas>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-4">
+              <div class="panel">
+                <div class="panel-head">
+                  <div>
+                    <h6 class="panel-title">Recruitment Pipeline</h6>
+                    <div class="panel-sub">Current openings by stage</div>
+                  </div>
+                </div>
+                <div style="height: 280px">
+                  <canvas id="pipelineChart"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Activities + Events -->
+          <div class="row g-3">
+            <div class="col-xl-8">
+              <div class="panel">
+                <div class="panel-head">
+                  <div>
+                    <h6 class="panel-title">Recent Activities</h6>
+                    <div class="panel-sub">Latest HR events and approvals</div>
+                  </div>
+                  <a href="../employees/employees.html" class="link-primary small">View all</a>
+                </div>
+                <div class="table-responsive">
+                  <table class="table align-middle mb-0">
+                    <thead>
+                      <tr>
+                        <th>Employee</th>
+                        <th>Activity</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="table-row-link" onclick="location.href='../employees/profile.html?name=Sarah%20Jenkins'">
+                        <td>
+                          <div class="emp">
+                            <div class="emp-avatar">SJ</div>
+                            <div>
+                              <div class="fw-semibold">Sarah Jenkins</div>
+                              <div class="text-muted small">Marketing</div>
+                            </div>
+                          </div>
+                        </td>
+                        <td>Leave request submitted</td>
+                        <td>Jul 8, 2026</td>
+                        <td><span class="chip chip-warning">Pending</span></td>
+                      </tr>
+                      <tr class="table-row-link" onclick="location.href='../employees/profile.html?name=Michael%20Chang'">
+                        <td>
+                          <div class="emp">
+                            <div class="emp-avatar bg-info-subtle text-info">MC</div>
+                            <div>
+                              <div class="fw-semibold">Michael Chang</div>
+                              <div class="text-muted small">Engineering</div>
+                            </div>
+                          </div>
+                        </td>
+                        <td>Performance review completed</td>
+                        <td>Jul 7, 2026</td>
+                        <td><span class="chip chip-success">Completed</span></td>
+                      </tr>
+                      <tr class="table-row-link" onclick="location.href='../employees/profile.html?name=Elena%20Rodriguez'">
+                        <td>
+                          <div class="emp">
+                            <div class="emp-avatar bg-success-subtle text-success">ER</div>
+                            <div>
+                              <div class="fw-semibold">Elena Rodriguez</div>
+                              <div class="text-muted small">Sales</div>
+                            </div>
+                          </div>
+                        </td>
+                        <td>Offer letter sent</td>
+                        <td>Jul 7, 2026</td>
+                        <td><span class="chip chip-primary">Sent</span></td>
+                      </tr>
+                      <tr class="table-row-link" onclick="location.href='../employees/profile.html?name=David%20Kim'">
+                        <td>
+                          <div class="emp">
+                            <div class="emp-avatar bg-warning-subtle text-warning">DK</div>
+                            <div>
+                              <div class="fw-semibold">David Kim</div>
+                              <div class="text-muted small">Finance</div>
+                            </div>
+                          </div>
+                        </td>
+                        <td>Timesheet approval</td>
+                        <td>Jul 6, 2026</td>
+                        <td><span class="chip chip-danger">Overdue</span></td>
+                      </tr>
+                      <tr class="table-row-link" onclick="location.href='../employees/profile.html?name=Amanda%20Foster'">
+                        <td>
+                          <div class="emp">
+                            <div class="emp-avatar bg-danger-subtle text-danger">AF</div>
+                            <div>
+                              <div class="fw-semibold">Amanda Foster</div>
+                              <div class="text-muted small">HR</div>
+                            </div>
+                          </div>
+                        </td>
+                        <td>Onboarding checklist</td>
+                        <td>Jul 5, 2026</td>
+                        <td><span class="chip chip-success">Completed</span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-4">
+              <div class="panel">
+                <div class="panel-head">
+                  <div>
+                    <h6 class="panel-title">Upcoming Events</h6>
+                    <div class="panel-sub">Next 2 weeks</div>
+                  </div>
+                </div>
+                <div class="event">
+                  <div class="event-icon icon-primary">
+                    <span class="material-symbols-outlined">rate_review</span>
+                  </div>
+                  <div>
+                    <div class="fw-semibold">Q3 Performance Reviews</div>
+                    <div class="text-muted small">Jul 12 – Jul 18 · 42 employees</div>
+                  </div>
+                </div>
+                <div class="event">
+                  <div class="event-icon icon-success">
+                    <span class="material-symbols-outlined">cake</span>
+                  </div>
+                  <div>
+                    <div class="fw-semibold">Team Birthdays</div>
+                    <div class="text-muted small">Jul 14 · 3 celebrations</div>
+                  </div>
+                </div>
+                <div class="event">
+                  <div class="event-icon icon-tertiary">
+                    <span class="material-symbols-outlined">group_add</span>
+                  </div>
+                  <div>
+                    <div class="fw-semibold">New Hire Orientation</div>
+                    <div class="text-muted small">Jul 15 · 8 new joiners</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    @section Scripts
+    {
+        <script src="~/js/dashboard/dashboard.js"></script>
+    }

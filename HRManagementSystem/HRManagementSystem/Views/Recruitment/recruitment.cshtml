@@ -1,0 +1,232 @@
+@{
+    ViewData["Title"] = "Recruitment";
+}
+<div class="app">
+      <aside class="sidebar" id="sidebar"></aside>
+
+      <div class="main">
+        <header class="topbar" id="topbar"></header>
+
+        <div class="content">
+            <div class="subnav-wrap">
+              <nav class="nav custom-nav-tabs">
+                <a class="nav-link active-tab" href="recruitment.html">Overview</a>
+                <a class="nav-link" href="requisitions.html">Requisitions</a>
+                <a class="nav-link" href="applications.html">Applications</a>
+                <a class="nav-link" href="interviews.html">Interviews</a>
+                <a class="nav-link" href="hiring-decision.html">Hiring Decisions</a>
+              </nav>
+            </div>
+
+            <div class="d-flex justify-content-between align-items-end mb-4 flex-wrap gap-3">
+                <div>
+                    <h1 style="font-size:24px; font-weight:700; color:var(--text)">Recruitment Overview</h1>
+                    <p class="panel-sub mb-0">Manage candidates and hiring pipeline</p>
+                </div>
+                <div class="d-flex gap-2">
+                    <button class="btn btn-outline-secondary btn-sm d-flex align-items-center gap-1">
+                        <span class="material-symbols-outlined" style="font-size:16px">filter_list</span> Filter
+                    </button>
+                    <button class="btn btn-outline-secondary btn-sm d-flex align-items-center gap-1">
+                        <span class="material-symbols-outlined" style="font-size:16px">calendar_month</span> This Month
+                    </button>
+                    <button class="btn btn-primary btn-sm d-flex align-items-center gap-1">
+                        <span class="material-symbols-outlined" style="font-size:16px">add</span> Post New Job
+                    </button>
+                </div>
+            </div>
+
+            <div class="row g-3 mb-3">
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="kpi-card">
+                        <div class="kpi-head">
+                            <span class="kpi-label">Open Positions</span>
+                            <span class="material-symbols-outlined kpi-icon icon-primary">work</span>
+                        </div>
+                        <div class="kpi-value" style="font-size:22px">24</div>
+                        <div class="kpi-foot text-success">
+                            <span class="material-symbols-outlined" style="font-size:14px">trending_up</span> +3 this week
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="kpi-card">
+                        <div class="kpi-head">
+                            <span class="kpi-label">Total Candidates</span>
+                            <span class="material-symbols-outlined kpi-icon icon-tertiary">person_search</span>
+                        </div>
+                        <div class="kpi-value" style="font-size:22px">1,284</div>
+                        <div class="kpi-foot text-success">
+                            <span class="material-symbols-outlined" style="font-size:14px">trending_up</span> +12% growth
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="kpi-card">
+                        <div class="kpi-head">
+                            <span class="kpi-label">Interviews</span>
+                            <span class="material-symbols-outlined kpi-icon" style="background:rgba(87,95,103,.1); color:var(--secondary)">event</span>
+                        </div>
+                        <div class="kpi-value" style="font-size:22px">42</div>
+                        <div class="kpi-foot text-muted">8 for today</div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="kpi-card">
+                        <div class="kpi-head">
+                            <span class="kpi-label">Pending Offers</span>
+                            <span class="material-symbols-outlined kpi-icon icon-danger">check_circle</span>
+                        </div>
+                        <div class="kpi-value" style="font-size:22px">18</div>
+                        <div class="kpi-foot text-danger">3 expiring soon</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row g-3">
+                <div class="col-12 col-xl-4">
+                    <div class="d-flex flex-column gap-3">
+                        <div class="panel">
+                            <div class="panel-head">
+                                <h4 class="panel-title">Applications Trend</h4>
+                            </div>
+                            <div class="chart-box"><canvas id="applicationsTrendChart"></canvas></div>
+                        </div>
+                        <div class="panel">
+                            <div class="panel-head">
+                                <h4 class="panel-title">Hiring Funnel</h4>
+                            </div>
+                            <div class="chart-box"><canvas id="hiringFunnelChart"></canvas></div>
+                        </div>
+                        <div class="panel">
+                            <h4 class="panel-title mb-3">Recent Alerts</h4>
+                            <div class="d-flex flex-column gap-2">
+                                <div class="d-flex gap-2">
+                                    <span class="alert-dot bg-danger"></span>
+                                    <div>
+                                        <p class="mb-0 small fw-semibold">Interview re-schedule required</p>
+                                        <small class="text-muted">Sarah Connor - Senior UX Designer</small>
+                                    </div>
+                                </div>
+                                <div class="d-flex gap-2">
+                                    <span class="alert-dot bg-success"></span>
+                                    <div>
+                                        <p class="mb-0 small fw-semibold">Offer accepted</p>
+                                        <small class="text-muted">Marcus Wright - Backend Engineer</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-xl-8">
+                    <div class="panel p-0 overflow-hidden h-100 d-flex flex-column">
+                        <div class="panel-head px-3 pt-3">
+                            <h4 class="panel-title">Active Hiring Pipeline</h4>
+                            <span class="small text-muted">Sorted by: Newest</span>
+                        </div>
+                        <div class="kanban-container p-3">
+                            <div class="kanban-column">
+                                <div class="kanban-head">
+                                    <span class="small fw-bold text-uppercase text-muted">Applied (12)</span>
+                                </div>
+                                <div class="kanban-card" data-target="Elena Gilbert">
+                                    <div class="d-flex align-items-center gap-2 mb-2">
+                                        <img class="avatar-sm rounded-circle" alt="Elena" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJLpaEJL_2BGlCXb-upjsO43JmR8TFzlaqIvw__q1SbUfuco5kqSSsuH82OGNcsWocPTamOCEu8gytf3o1aiRHTADUVOxWK8kBTYuwcNDh2gV7nXzt5xdDe7k-gyMN5OUhzsRoGugfVLugXd1IarvN7FfkJcA3UC2708m5TEwfL4RsujC2oP0413uiU33-1q1QkLzELPWJP_ul9tiCjrQ-1ASXQycL2-QS20OQxI_80E_hqebg_OEG"/>
+                                        <div>
+                                            <p class="mb-0 small fw-bold">Elena Gilbert</p>
+                                            <small class="text-muted">Product Manager</small>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center pt-2 border-top">
+                                        <small class="text-muted">Oct 24, 2023</small>
+                                        <span class="chip chip-primary">JB</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="kanban-column">
+                                <div class="kanban-head">
+                                    <span class="small fw-bold text-uppercase text-muted">Screening (8)</span>
+                                </div>
+                                <div class="kanban-card" data-target="Chloe Sullivan">
+                                    <div class="d-flex align-items-center gap-2 mb-2">
+                                        <img class="avatar-sm rounded-circle" alt="Chloe" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVfFrMe0w0DPMGtoQ5qXIVZdXsXVgR2rsob8oiG7gmFLA4vN9lwoIu1xltwouIbR4BnfURXzxGfay67JMQj1LzgElGk14YzI4qtQsDAq56foF_IpEDvWQoOSlwxUyLgRK3Cwr3JNGRH8REvDFTge-wmftA-N-XpNWe6bfbE6xd5trp91GGJSeqgOgqkKNcvO-1fybseC4uKBBcrW4HNS6AC-gJm_BGCmkysoO34ajxfTzoq-T0hwes"/>
+                                        <div>
+                                            <p class="mb-0 small fw-bold">Chloe Sullivan</p>
+                                            <small class="text-muted">Senior Developer</small>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center pt-2 border-top">
+                                        <small class="text-muted">In review by HR</small>
+                                        <span class="chip chip-warning">PENDING</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="kanban-column">
+                                <div class="kanban-head">
+                                    <span class="small fw-bold text-uppercase text-muted">Interview (5)</span>
+                                </div>
+                                <div class="kanban-card" style="border-left:4px solid var(--primary)" data-target="Jack Shephard">
+                                    <div class="d-flex align-items-center gap-2 mb-2">
+                                        <img class="avatar-sm rounded-circle" alt="Jack" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDURjDFQfLHL3zSlri5gEczL48wQ4t3ABSvNkl8TdMh7YA7pqUGsD6OzIxzeYk0T2ZFaLDyt9K6ft4alB_736exZnjTEQf88VuMbDbpJBLKLltutum1DDCqO3q9tq_KkdvDkhagVV1UVZ1h1m_FJszlBNTeXeX-_NHHcavsKPuQijV4djVHKh0njKcRn3KBHiQlAiCMfeXNyTYyIX5DtYZ_EI02Z531kAv1nBBqwRpre7CbRgeHsc3c"/>
+                                        <div>
+                                            <p class="mb-0 small fw-bold">Jack Shephard</p>
+                                            <small class="text-muted">System Architect</small>
+                                        </div>
+                                    </div>
+                                    <div class="pt-2 border-top d-flex align-items-center gap-2" style="color:var(--primary)">
+                                        <span class="material-symbols-outlined" style="font-size:14px">videocam</span>
+                                        <small class="fw-bold">Today @ 2:30 PM</small>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="kanban-column">
+                                <div class="kanban-head">
+                                    <span class="small fw-bold text-uppercase text-muted">Offer (3)</span>
+                                </div>
+                                <div class="kanban-card" data-target="Kate Austen">
+                                    <div class="d-flex align-items-center gap-2 mb-2">
+                                        <img class="avatar-sm rounded-circle" alt="Kate" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlhZxD57y5ve0lQNMkdosoDPH1kZy6yvg7GBZk-pEbAjffd9njrUtjmy7db7QSjfQI81tc99eXftaEat4cUboZ7cXPh49GzT4x-OnkuJ3HQGz6eqrfLBEbZdlMCwnVuiT7peicvKn3g2NTZlud6s2MFI1LUFDaRbdXSlr7WipRGkaA75UGtefiTBb72SqOoyQ_wk2elyWQ5BIMUBTqYqyRzCPmQ5_srGKAy8zmSRrOFDQJ_HR3qmKi"/>
+                                        <div>
+                                            <p class="mb-0 small fw-bold">Kate Austen</p>
+                                            <small class="text-muted">Content Strategist</small>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center pt-2 border-top">
+                                        <small class="text-muted">Offer Sent</small>
+                                        <span class="chip chip-success">WAITING</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="kanban-column" style="background:#f3f4f5">
+                                <div class="kanban-head">
+                                    <span class="small fw-bold text-uppercase text-muted">Hired (21)</span>
+                                    <span class="material-symbols-outlined" style="font-size:18px; color:var(--success)">check_circle</span>
+                                </div>
+                                <div class="kanban-card" style="opacity:.6; cursor:not-allowed">
+                                    <div class="d-flex align-items-center gap-2">
+                                        <img class="avatar-sm rounded-circle" alt="Sawyer" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkE5x2OYAK_iMlmIYGw2nDvJ7zzPrSMps00qZp968xdpycSowM1P8ZyFdWGf1F1hdQvDUBWmNnOK89w-nO1kPzpRCUyHx_YLJhjLUxTcR7g-vnFayH_QbM-g6JSIp3xrBk8QHk8zt-cpsYGPuaU0bbmFzqbc_bSGo614bn9NrIsukoEh5VivM5dIifs6BFBsVISu_ckBEBFgCL_5PMCW4pg-lwXMv5crScYmB7vV45xOBIghYcmg0B"/>
+                                        <div>
+                                            <p class="mb-0 small fw-bold">Sawyer Ford</p>
+                                            <small class="text-muted">Data Analyst</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+      </div>
+    </div>
+    @section Scripts
+{
+    <script src="~/js/recruitment/recruitment-app.js"></script>
+}

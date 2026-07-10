@@ -1,0 +1,210 @@
+@{
+    ViewData["Title"] = "Employee Profile";
+}
+<div class="app">
+      <aside class="sidebar" id="sidebar"></aside>
+
+      <div class="main">
+        <header class="topbar" id="topbar"></header>
+
+        <div class="content">
+          <div class="crumb"><a href="employees.html">Employees</a> / <span id="crumbName">Profile</span></div>
+
+          <section class="panel mb-4">
+            <div class="d-flex flex-column flex-md-row align-items-center align-items-md-start justify-content-between gap-4">
+              <div class="d-flex flex-column flex-md-row align-items-center gap-4">
+                <div class="position-relative">
+                  <img id="pAvatar" class="profile-avatar" src="" alt="Employee" />
+                  <div id="pStatus" class="status-pill bg-success text-white fw-bold text-uppercase">Active</div>
+                </div>
+                <div class="text-center text-md-start">
+                  <h2 id="pName" class="fw-bold m-0 mb-1" style="font-size: 22px">Robert Fox</h2>
+                  <p id="pTitle" class="text-secondary m-0 mb-2">Senior Software Engineer</p>
+                  <div class="d-flex align-items-center justify-content-center justify-content-md-start gap-2 flex-wrap">
+                    <span id="pDept" class="chip chip-primary text-uppercase">Engineering</span>
+                    <span class="text-secondary small d-flex align-items-center">
+                      <span class="material-symbols-outlined" style="font-size: 14px" >location_on</span>
+                      San Francisco, CA
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="d-flex gap-2 align-self-center align-self-md-start">
+                <button id="editProfileBtn" class="btn btn-outline-secondary btn-sm d-flex align-items-center gap-1">
+                  <span class="material-symbols-outlined" style="font-size: 16px">edit</span> Edit Profile
+                </button>
+                <button class="btn btn-outline-secondary btn-sm d-flex align-items-center justify-content-center">
+                  <span class="material-symbols-outlined" style="font-size: 18px">more_horiz</span>
+                </button>
+              </div>
+            </div>
+
+            <nav class="nav custom-nav-tabs mt-4" id="profileTabs">
+              <a class="nav-link active-tab" data-tab="overview" href="#">Overview</a>
+              <a class="nav-link" data-tab="attendance" href="#">Attendance</a>
+              <a class="nav-link" data-tab="leave" href="#">Leave History</a>
+              <a class="nav-link" data-tab="payroll" href="#">Payroll</a>
+              <a class="nav-link" data-tab="documents" href="#">Documents</a>
+            </nav>
+          </section>
+
+          <div id="tabContents">
+            <div id="overviewTab" class="tab-pane-content show-tab">
+              <div class="row g-3 mb-3">
+                <div class="col-12 col-lg-6">
+                  <div class="panel h-100">
+                    <div class="panel-head">
+                      <h3 class="panel-title">Personal Information</h3>
+                      <span class="material-symbols-outlined text-muted" style="font-size: 18px">info</span>
+                    </div>
+                    <div class="row g-3">
+                      <div class="col-6">
+                        <label class="text-muted small mb-1 d-block">Email Address</label>
+                        <p id="pEmail" class="mb-0">robert.fox@enterprise.com</p>
+                      </div>
+                      <div class="col-6">
+                        <label class="text-muted small mb-1 d-block">Phone Number</label>
+                        <p class="mb-0">+1 (555) 012-3456</p>
+                      </div>
+                      <div class="col-6">
+                        <label class="text-muted small mb-1 d-block">Date of Birth</label>
+                        <p class="mb-0">May 12, 1988</p>
+                      </div>
+                      <div class="col-6">
+                        <label class="text-muted small mb-1 d-block">Gender</label>
+                        <p class="mb-0">Male</p>
+                      </div>
+                      <div class="col-12">
+                        <label class="text-muted small mb-1 d-block">Home Address</label>
+                        <p class="mb-0">123 Tech Lane, San Francisco, CA 94105, United States</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-12 col-lg-6">
+                  <div class="panel h-100">
+                    <div class="panel-head">
+                      <h3 class="panel-title">Employment Information</h3>
+                      <span class="material-symbols-outlined text-muted" style="font-size: 18px">badge</span>
+                    </div>
+                    <div class="row g-3">
+                      <div class="col-6">
+                        <label class="text-muted small mb-1 d-block">Department</label>
+                        <p id="pDept2" class="mb-0">Engineering</p>
+                      </div>
+                      <div class="col-6">
+                        <label class="text-muted small mb-1 d-block">Reporting Manager</label>
+                        <div class="d-flex align-items-center gap-2">
+                          <div class="manager-avatar" id="pManagerInitials">KW</div>
+                          <p id="pManager" class="mb-0">Kristin Watson</p>
+                        </div>
+                      </div>
+                      <div class="col-6">
+                        <label class="text-muted small mb-1 d-block">Hire Date</label>
+                        <p id="pHire" class="mb-0">Oct 12, 2021</p>
+                      </div>
+                      <div class="col-6">
+                        <label class="text-muted small mb-1 d-block">Employment Status</label>
+                        <p id="pEmpStatus" class="mb-0">Full-time</p>
+                      </div>
+                      <div class="col-6">
+                        <label class="text-muted small mb-1 d-block">Annual Salary</label>
+                        <p class="mb-0">$125,000</p>
+                      </div>
+                      <div class="col-6">
+                        <label class="text-muted small mb-1 d-block">Work Location</label>
+                        <p class="mb-0">Main HQ - Building 4</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="panel mb-3 p-0 overflow-hidden">
+                <div class="panel-head px-3 pt-3">
+                  <h3 class="panel-title">Recent Attendance</h3>
+                  <button class="view-all-attendance-link btn btn-link btn-sm p-0 text-decoration-none">View All</button>
+                </div>
+                <div class="table-responsive">
+                  <table class="table align-middle mb-0">
+                    <thead>
+                      <tr>
+                        <th class="ps-3">Date</th>
+                        <th>Check In</th>
+                        <th>Check Out</th>
+                        <th class="pe-3">Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="ps-3">Oct 24, 2023</td>
+                        <td>08:52 AM</td>
+                        <td>05:45 PM</td>
+                        <td class="pe-3"><span class="badge-status status-on-time">On Time</span></td>
+                      </tr>
+                      <tr>
+                        <td class="ps-3">Oct 23, 2023</td>
+                        <td>09:15 AM</td>
+                        <td>06:05 PM</td>
+                        <td class="pe-3"><span class="badge-status status-late">Late</span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div class="panel p-0 overflow-hidden">
+                <div class="panel-head px-3 pt-3">
+                  <h3 class="panel-title">Recent Leave Requests</h3>
+                  <button class="view-all-leaves-link btn btn-link btn-sm p-0 text-decoration-none">View All</button>
+                </div>
+                <div class="table-responsive">
+                  <table class="table align-middle mb-0">
+                    <thead>
+                      <tr>
+                        <th class="ps-3">Type</th>
+                        <th>Dates</th>
+                        <th>Days</th>
+                        <th class="pe-3">Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="ps-3 fw-medium">Annual Leave</td>
+                        <td>Nov 01 - Nov 03, 2023</td>
+                        <td>3 Days</td>
+                        <td class="pe-3"><span class="badge-status status-approved">Approved</span></td>
+                      </tr>
+                      <tr>
+                        <td class="ps-3 fw-medium">Sick Leave</td>
+                        <td>Sep 15, 2023</td>
+                        <td>1 Day</td>
+                        <td class="pe-3"><span class="badge-status status-completed">Completed</span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <div id="attendanceTab" class="tab-pane-content">
+              <div class="panel"><h3 class="panel-title mb-2">Full Attendance History</h3><p class="text-muted mb-0">Detailed check-in/check-out records for this employee.</p></div>
+            </div>
+            <div id="leaveTab" class="tab-pane-content">
+              <div class="panel"><h3 class="panel-title mb-2">All Leave Requests</h3><p class="text-muted mb-0">Full leave balance and request history.</p></div>
+            </div>
+            <div id="payrollTab" class="tab-pane-content">
+              <div class="panel"><h3 class="panel-title mb-2">Payroll & Payslips</h3><p class="text-muted mb-0">Base salary, allowances, deductions and monthly payslip history.</p></div>
+            </div>
+            <div id="documentsTab" class="tab-pane-content">
+              <div class="panel"><h3 class="panel-title mb-2">Employee Documents</h3><p class="text-muted mb-0">Contract files, ID and academic certificates.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    @section Scripts
+{
+    <script src="~/js/employees/profile-app.js"></script>
+}

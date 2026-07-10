@@ -1,0 +1,135 @@
+@{
+    ViewData["Title"] = "Leave Management";
+}
+<div class="app">
+      <aside class="sidebar" id="sidebar"></aside>
+
+      <div class="main">
+        <header class="topbar" id="topbar"></header>
+
+        <div class="content">
+          <div class="subnav-wrap">
+            <nav class="nav custom-nav-tabs">
+              <a class="nav-link active-tab" href="leave.html">Overview</a>
+              <a class="nav-link" href="leave-requests.html">Requests</a>
+              <a class="nav-link" href="leave-create.html">Request Leave</a>
+            </nav>
+          </div>
+
+          <div class="d-flex justify-content-between align-items-end mb-4 flex-wrap gap-3">
+            <div>
+              <h1 style="font-size: 24px; font-weight: 700; color: var(--text)">Leave Management</h1>
+              <div class="panel-sub">Balances, usage trends and pending approvals across the organization.</div>
+            </div>
+            <a href="leave-create.html" class="btn btn-primary btn-sm d-flex align-items-center gap-1">
+              <span class="material-symbols-outlined" style="font-size: 18px">add</span>Request Leave
+            </a>
+          </div>
+
+          <!-- Stats -->
+          <div class="row g-3 mb-3">
+            <div class="col-md-6 col-xl-3">
+              <div class="kpi-card">
+                <div class="kpi-head">
+                  <span class="kpi-label">Pending Requests</span>
+                  <span class="material-symbols-outlined kpi-icon icon-warning">pending_actions</span>
+                </div>
+                <div class="kpi-value">14</div>
+                <div class="kpi-foot text-muted">Awaiting manager review</div>
+              </div>
+            </div>
+            <div class="col-md-6 col-xl-3">
+              <div class="kpi-card">
+                <div class="kpi-head">
+                  <span class="kpi-label">Approved Requests</span>
+                  <span class="material-symbols-outlined kpi-icon icon-success">task_alt</span>
+                </div>
+                <div class="kpi-value">86</div>
+                <div class="kpi-foot text-muted">This quarter</div>
+              </div>
+            </div>
+            <div class="col-md-6 col-xl-3">
+              <div class="kpi-card">
+                <div class="kpi-head">
+                  <span class="kpi-label">Rejected Requests</span>
+                  <span class="material-symbols-outlined kpi-icon icon-danger">block</span>
+                </div>
+                <div class="kpi-value">7</div>
+                <div class="kpi-foot text-muted">This quarter</div>
+              </div>
+            </div>
+            <div class="col-md-6 col-xl-3">
+              <div class="kpi-card">
+                <div class="kpi-head">
+                  <span class="kpi-label">Total Leave Balance</span>
+                  <span class="material-symbols-outlined kpi-icon icon-primary">event_available</span>
+                </div>
+                <div class="kpi-value">3,214</div>
+                <div class="kpi-foot text-muted">Days remaining, org-wide</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Charts -->
+          <div class="row g-3 mb-3">
+            <div class="col-xl-8">
+              <div class="panel">
+                <div class="panel-head">
+                  <div>
+                    <h6 class="panel-title">Leave Usage</h6>
+                    <div class="panel-sub">Approved leave days taken, last 6 months</div>
+                  </div>
+                </div>
+                <div style="height: 250px">
+                  <canvas id="leaveUsageChart"></canvas>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-4">
+              <div class="panel">
+                <div class="panel-head">
+                  <div>
+                    <h6 class="panel-title">Leave Type Distribution</h6>
+                    <div class="panel-sub">Share of requests, this quarter</div>
+                  </div>
+                </div>
+                <div style="height: 170px">
+                  <canvas id="leaveTypeChart"></canvas>
+                </div>
+                <div class="legend-list" id="leaveTypeLegend"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Recent requests -->
+          <div class="panel p-0 overflow-hidden">
+            <div class="panel-head px-3 pt-3">
+              <div>
+                <h6 class="panel-title">Recent Requests</h6>
+                <div class="panel-sub">Latest submissions across all departments</div>
+              </div>
+              <a href="leave-requests.html" class="link-primary small">View all</a>
+            </div>
+            <div class="table-responsive">
+              <table class="table align-middle mb-0">
+                <thead>
+                  <tr>
+                    <th class="ps-3">Employee</th>
+                    <th>Department</th>
+                    <th>Leave Type</th>
+                    <th>Dates</th>
+                    <th>Status</th>
+                    <th class="text-end pe-3">Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="leaveOverviewBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    @section Scripts
+{
+    <script src="~/js/leave/leave-app.js"></script>
+}

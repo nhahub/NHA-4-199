@@ -22,6 +22,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="Views\Admin\admin-roles.cshtml" />
+    <Content Remove="Views\Admin\admin-settings.cshtml" />
+    <Content Remove="Views\Admin\admin-shifts.cshtml" />
+    <Content Remove="Views\Admin\admin-users.cshtml" />
+    <Content Remove="Views\Attendance\attendance-records.cshtml" />
+    <Content Remove="Views\Attendance\attendance.cshtml" />
+    <Content Remove="Views\Attendance\my-attendance.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -31,6 +41,24 @@
   <ItemGroup>
     <ProjectReference Include="..\HRManagementSystem.BLL\HRManagementSystem.BLL.csproj" />
     <ProjectReference Include="..\HRManagementSystem.DAL\HRManagementSystem.DAL.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Views\Departments\" />
+    <Folder Include="Views\Employees\" />
+    <Folder Include="Views\Leave\" />
+    <Folder Include="Views\Recruitment\" />
+    <Folder Include="Views\Payroll\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Views\Admin\admin-roles.cshtml" />
+    <None Include="Views\Admin\admin-settings.cshtml" />
+    <None Include="Views\Admin\admin-shifts.cshtml" />
+    <None Include="Views\Admin\admin-users.cshtml" />
+    <None Include="Views\Attendance\attendance-records.cshtml" />
+    <None Include="Views\Attendance\attendance.cshtml" />
+    <None Include="Views\Attendance\my-attendance.cshtml" />
   </ItemGroup>
 
 </Project>

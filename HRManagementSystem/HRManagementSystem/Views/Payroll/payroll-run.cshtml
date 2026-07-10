@@ -1,0 +1,201 @@
+@{
+    ViewData["Title"] = "Payroll Run";
+}
+<div class="app">
+      <aside class="sidebar" id="sidebar"></aside>
+
+      <div class="main">
+        <header class="topbar" id="topbar"></header>
+
+        <div class="content">
+          <div class="subnav-wrap">
+            <nav class="nav custom-nav-tabs">
+              <a class="nav-link" href="payroll.html">Overview</a>
+              <a class="nav-link active-tab" href="payroll-run.html">Run Payroll</a>
+            </nav>
+          </div>
+
+          <div class="mb-4">
+            <h1 style="font-size: 24px; font-weight: 700; color: var(--text)">Run Payroll</h1>
+            <div class="panel-sub">Process salaries for the selected pay period in four controlled steps.</div>
+          </div>
+
+          <div class="wizard-track" id="wizardTrack">
+            <div class="wizard-step active" data-step="1">
+              <div class="wizard-step-head">
+                <span class="wizard-step-num">1</span>
+                <div>
+                  <div class="wizard-step-title">Select Period</div>
+                  <div class="wizard-step-status">In progress</div>
+                </div>
+              </div>
+            </div>
+            <div class="wizard-step" data-step="2">
+              <div class="wizard-step-head">
+                <span class="wizard-step-num">2</span>
+                <div>
+                  <div class="wizard-step-title">Calculate Salaries</div>
+                  <div class="wizard-step-status">Not started</div>
+                </div>
+              </div>
+            </div>
+            <div class="wizard-step" data-step="3">
+              <div class="wizard-step-head">
+                <span class="wizard-step-num">3</span>
+                <div>
+                  <div class="wizard-step-title">Review Results</div>
+                  <div class="wizard-step-status">Not started</div>
+                </div>
+              </div>
+            </div>
+            <div class="wizard-step" data-step="4">
+              <div class="wizard-step-head">
+                <span class="wizard-step-num">4</span>
+                <div>
+                  <div class="wizard-step-title">Confirm Processing</div>
+                  <div class="wizard-step-status">Not started</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 1 -->
+          <div class="wizard-panel step-panel" id="panel1">
+            <h4 class="panel-title mb-1">Select Payroll Month</h4>
+            <p class="text-muted small mb-3">Choose the pay period you want to process. Only open periods are eligible.</p>
+            <div class="row g-3 align-items-end">
+              <div class="col-12 col-md-4">
+                <label class="form-label small fw-semibold" for="payPeriod">Pay Period</label>
+                <select id="payPeriod" class="form-select">
+                  <option selected>July 2026</option>
+                  <option>June 2026 (Closed)</option>
+                  <option>May 2026 (Closed)</option>
+                </select>
+              </div>
+              <div class="col-12 col-md-4">
+                <label class="form-label small fw-semibold" for="payDate">Pay Date</label>
+                <input type="date" id="payDate" class="form-control" value="2026-07-31" />
+              </div>
+              <div class="col-12 col-md-4">
+                <p class="text-muted small mb-0">Eligible employees: <strong style="color:var(--text)">1,248</strong></p>
+              </div>
+            </div>
+            <div class="d-flex justify-content-end mt-4">
+              <button class="btn btn-primary btn-sm" data-next="2">Continue to Calculation</button>
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="wizard-panel step-panel d-none" id="panel2">
+            <h4 class="panel-title mb-1">Calculate Salaries</h4>
+            <p class="text-muted small mb-3">Base pay, allowances, deductions and tax withholding will be calculated for all eligible employees in July 2026.</p>
+            <div id="calcIdle">
+              <div class="summary-line"><span class="label">Employees to process</span><span>1,248</span></div>
+              <div class="summary-line"><span class="label">Pay period</span><span>Jul 1 – Jul 31, 2026</span></div>
+              <div class="d-flex justify-content-end mt-4 gap-2">
+                <button class="btn btn-outline-secondary btn-sm" data-back="1">Back</button>
+                <button class="btn btn-primary btn-sm" id="startCalcBtn">Start Calculation</button>
+              </div>
+            </div>
+            <div id="calcRunning" class="d-none">
+              <div class="progress mb-2" style="height: 8px">
+                <div id="calcProgressBar" class="progress-bar" role="progressbar" style="width: 0%; background: var(--primary)"></div>
+              </div>
+              <p class="text-muted small mb-0" id="calcProgressLabel">Calculating salaries... 0%</p>
+            </div>
+            <div id="calcDone" class="d-none">
+              <div class="summary-line"><span class="label">Employees processed</span><span>1,231</span></div>
+              <div class="summary-line"><span class="label">Flagged for review</span><span>17</span></div>
+              <div class="summary-line"><span class="label">Estimated total payroll</span><span>$1,860,420</span></div>
+              <div class="d-flex justify-content-end mt-4">
+                <button class="btn btn-primary btn-sm" data-next="3">Continue to Review</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="wizard-panel step-panel d-none" id="panel3">
+            <h4 class="panel-title mb-1">Review Results</h4>
+            <p class="text-muted small mb-3">Confirm totals before final processing. Flagged records need attention but won't block this run.</p>
+            <div class="row g-3 mb-3">
+              <div class="col-6 col-md-3">
+                <p class="text-muted mb-1 text-uppercase" style="font-size: 11px">Total Payroll</p>
+                <p class="fw-bold mb-0" style="font-size: 18px">$1,860,420</p>
+              </div>
+              <div class="col-6 col-md-3">
+                <p class="text-muted mb-1 text-uppercase" style="font-size: 11px">Employees Paid</p>
+                <p class="fw-bold mb-0" style="font-size: 18px">1,231</p>
+              </div>
+              <div class="col-6 col-md-3">
+                <p class="text-muted mb-1 text-uppercase" style="font-size: 11px">Flagged</p>
+                <p class="fw-bold mb-0" style="font-size: 18px; color: var(--warning)">17</p>
+              </div>
+              <div class="col-6 col-md-3">
+                <p class="text-muted mb-1 text-uppercase" style="font-size: 11px">Pay Date</p>
+                <p class="fw-bold mb-0" style="font-size: 18px">Jul 31, 2026</p>
+              </div>
+            </div>
+            <div class="table-responsive mb-3">
+              <table class="table align-middle mb-0">
+                <thead>
+                  <tr><th class="ps-2">Department</th><th>Employees</th><th>Total Net Pay</th><th class="pe-2">Status</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td class="ps-2">Engineering</td><td>412</td><td>$720,110</td><td class="pe-2"><span class="chip chip-success">Ready</span></td></tr>
+                  <tr><td class="ps-2">Sales</td><td>256</td><td>$410,860</td><td class="pe-2"><span class="chip chip-success">Ready</span></td></tr>
+                  <tr><td class="ps-2">Marketing</td><td>134</td><td>$260,240</td><td class="pe-2"><span class="chip chip-success">Ready</span></td></tr>
+                  <tr><td class="ps-2">Finance</td><td>98</td><td>$210,530</td><td class="pe-2"><span class="chip chip-warning">9 flagged</span></td></tr>
+                  <tr><td class="ps-2">HR & Ops</td><td>72</td><td>$160,320</td><td class="pe-2"><span class="chip chip-warning">5 flagged</span></td></tr>
+                  <tr><td class="ps-2">Product Design</td><td>46</td><td>$98,360</td><td class="pe-2"><span class="chip chip-warning">3 flagged</span></td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="d-flex justify-content-end gap-2">
+              <button class="btn btn-outline-secondary btn-sm" data-back="2">Back</button>
+              <button class="btn btn-primary btn-sm" data-next="4">Continue to Confirmation</button>
+            </div>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="wizard-panel step-panel d-none" id="panel4">
+            <h4 class="panel-title mb-3">Confirm Processing</h4>
+
+            <div class="warning-box mb-3">
+              <span class="material-symbols-outlined">warning</span>
+              <div>
+                <p><strong>This action cannot be undone.</strong> Once confirmed, payslips are generated and bank transfer instructions are sent to the payment processor.</p>
+                <p>Flagged records will still be included in this run and should be corrected in a follow-up adjustment cycle.</p>
+              </div>
+            </div>
+
+            <div class="summary-line"><span class="label">Pay period</span><span>July 2026</span></div>
+            <div class="summary-line"><span class="label">Employees</span><span>1,231</span></div>
+            <div class="summary-line"><span class="label">Total amount</span><span>$1,860,420</span></div>
+
+            <div class="form-check mt-3 mb-3">
+              <input class="form-check-input" type="checkbox" id="confirmAck" />
+              <label class="form-check-label small" for="confirmAck">
+                I've reviewed the totals above and confirm this payroll run is accurate.
+              </label>
+            </div>
+
+            <div class="d-flex justify-content-end gap-2">
+              <button class="btn btn-outline-secondary btn-sm" data-back="3">Back</button>
+              <button class="btn btn-primary btn-sm" id="confirmProcessBtn" disabled>Confirm & Process Payroll</button>
+            </div>
+          </div>
+
+          <!-- Success state -->
+          <div class="panel d-none text-center py-5" id="successPanel">
+            <span class="material-symbols-outlined" style="font-size: 40px; color: var(--success)">check_circle</span>
+            <h4 class="panel-title mt-2 mb-1">Payroll processed successfully</h4>
+            <p class="text-muted mb-3">1,231 employees will be paid on Jul 31, 2026. Payslips have been generated.</p>
+            <a href="payroll.html" class="btn btn-primary btn-sm">Return to Payroll Overview</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    @section Scripts
+{
+    <script src="~/js/payroll/payroll-run-app.js"></script>
+}

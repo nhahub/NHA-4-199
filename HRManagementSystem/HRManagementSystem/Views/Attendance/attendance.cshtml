@@ -1,0 +1,147 @@
+@{
+    ViewData["Title"] = "Attendance";
+}
+<div class="app">
+      <aside class="sidebar" id="sidebar"></aside>
+
+      <div class="main">
+        <header class="topbar" id="topbar"></header>
+
+        <div class="content">
+          <div class="d-flex justify-content-between align-items-end mb-4 flex-wrap gap-3">
+            <div>
+              <h1 style="font-size: 24px; font-weight: 700; color: var(--text)">Attendance Overview</h1>
+              <div class="panel-sub">Workforce presence and punctuality, updated in real time.</div>
+            </div>
+            <div class="d-flex gap-2">
+              <select class="form-select form-select-sm w-auto">
+                <option>Today</option>
+                <option>This Week</option>
+                <option>This Month</option>
+              </select>
+              <button class="btn btn-outline-secondary btn-sm d-flex align-items-center gap-1">
+                <span class="material-symbols-outlined" style="font-size: 18px">download</span>Export
+              </button>
+            </div>
+          </div>
+
+          <!-- KPI Cards -->
+          <div class="row g-3 mb-3">
+            <div class="col-md-6 col-xl-3">
+              <div class="kpi-card">
+                <div class="kpi-head">
+                  <span class="kpi-label">Present Today</span>
+                  <span class="material-symbols-outlined kpi-icon icon-success">how_to_reg</span>
+                </div>
+                <div class="kpi-value">1,173</div>
+                <div class="kpi-foot text-muted">94% of workforce</div>
+              </div>
+            </div>
+            <div class="col-md-6 col-xl-3">
+              <div class="kpi-card">
+                <div class="kpi-head">
+                  <span class="kpi-label">Late Employees</span>
+                  <span class="material-symbols-outlined kpi-icon icon-warning">schedule</span>
+                </div>
+                <div class="kpi-value">38</div>
+                <div class="kpi-foot text-muted">3.0% of workforce</div>
+              </div>
+            </div>
+            <div class="col-md-6 col-xl-3">
+              <div class="kpi-card">
+                <div class="kpi-head">
+                  <span class="kpi-label">Absent Employees</span>
+                  <span class="material-symbols-outlined kpi-icon icon-danger">event_busy</span>
+                </div>
+                <div class="kpi-value">27</div>
+                <div class="kpi-foot text-muted">2.2% of workforce</div>
+              </div>
+            </div>
+            <div class="col-md-6 col-xl-3">
+              <div class="kpi-card">
+                <div class="kpi-head">
+                  <span class="kpi-label">On Leave</span>
+                  <span class="material-symbols-outlined kpi-icon icon-tertiary">beach_access</span>
+                </div>
+                <div class="kpi-value">10</div>
+                <div class="kpi-foot text-muted">Approved leave today</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Charts -->
+          <div class="row g-3 mb-3">
+            <div class="col-xl-4">
+              <div class="panel">
+                <div class="panel-head">
+                  <div>
+                    <h6 class="panel-title">Attendance Rate</h6>
+                    <div class="panel-sub">Present vs absent, today</div>
+                  </div>
+                </div>
+                <div style="height: 240px">
+                  <canvas id="attendanceRateChart"></canvas>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-8">
+              <div class="panel">
+                <div class="panel-head">
+                  <div>
+                    <h6 class="panel-title">Late Arrival Trend</h6>
+                    <div class="panel-sub">Employees clocking in after 9:15 AM, last 7 days</div>
+                  </div>
+                </div>
+                <div style="height: 240px">
+                  <canvas id="lateTrendChart"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Table -->
+          <div class="panel mb-3 p-3 d-flex flex-wrap align-items-center gap-3">
+            <div class="search mb-0 flex-grow-1" style="min-width: 220px">
+              <span class="material-symbols-outlined">search</span>
+              <input id="attSearch" type="text" placeholder="Search employees..." style="width: 100%" />
+            </div>
+            <select id="attDept" class="form-select form-select-sm w-auto">
+              <option value="">Department</option>
+              <option>Engineering</option>
+              <option>Marketing</option>
+              <option>Sales</option>
+              <option>Finance</option>
+              <option>HR & Ops</option>
+            </select>
+            <select id="attStatus" class="form-select form-select-sm w-auto">
+              <option value="">Status</option>
+              <option>On Time</option>
+              <option>Late</option>
+              <option>Absent</option>
+              <option>On Leave</option>
+            </select>
+          </div>
+
+          <div class="panel p-0 overflow-hidden">
+            <div class="table-responsive">
+              <table class="table align-middle mb-0">
+                <thead>
+                  <tr>
+                    <th class="ps-4">Employee</th>
+                    <th>Department</th>
+                    <th>Check In</th>
+                    <th>Check Out</th>
+                    <th class="pe-4">Status</th>
+                  </tr>
+                </thead>
+                <tbody id="attBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    @section Scripts
+{
+    <script src="~/js/attendance/attendance-app.js"></script>
+}

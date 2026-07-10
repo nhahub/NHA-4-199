@@ -1,0 +1,97 @@
+@{
+    ViewData["Title"] = "Employees";
+}
+<div class="app">
+      <aside class="sidebar" id="sidebar"></aside>
+
+      <div class="main">
+        <header class="topbar" id="topbar"></header>
+
+        <div class="content">
+          <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-end gap-3 mb-4">
+            <div>
+              <h1 class="page-title" style="font-size: 24px; font-weight: 700; color: var(--text)">Employees</h1>
+              <div class="panel-sub">Manage employee records and organization data.</div>
+            </div>
+            <div class="d-flex gap-2">
+              <button class="btn btn-outline-secondary btn-sm d-flex align-items-center gap-1">
+                <span class="material-symbols-outlined" style="font-size: 18px">download</span>Export
+              </button>
+              <button class="btn btn-primary btn-sm d-flex align-items-center gap-1">
+                <span class="material-symbols-outlined" style="font-size: 18px">add</span>Add Employee
+              </button>
+            </div>
+          </div>
+
+          <div class="panel mb-4 p-3 d-flex flex-wrap align-items-center gap-3">
+            <div class="search mb-0 flex-grow-1" style="min-width: 240px">
+              <span class="material-symbols-outlined">search</span>
+              <input id="employeeSearch" type="text" placeholder="Search employees..." style="width: 100%" />
+            </div>
+            <select id="filterDept" class="form-select form-select-sm w-auto" style="min-width: 140px; height: 38px">
+              <option value="">Department</option>
+              <option>Engineering</option>
+              <option>Design</option>
+              <option>HR & Ops</option>
+              <option>Marketing</option>
+            </select>
+            <select id="filterStatus" class="form-select form-select-sm w-auto" style="min-width: 140px; height: 38px">
+              <option value="">Status</option>
+              <option>Active</option>
+              <option>Remote</option>
+              <option>On Leave</option>
+            </select>
+            <select class="form-select form-select-sm w-auto" style="min-width: 140px; height: 38px">
+              <option value="">Job Title</option>
+              <option>Manager</option>
+              <option>Software Engineer</option>
+              <option>Product Designer</option>
+            </select>
+            <button class="icon-btn" style="height: 38px; width: 38px; display: flex; align-items: center; justify-content: center">
+              <span class="material-symbols-outlined">filter_list</span>
+            </button>
+          </div>
+
+          <div class="panel p-0 overflow-hidden">
+            <div class="table-responsive">
+              <table class="table align-middle mb-0" id="employeeTable">
+                <thead>
+                  <tr>
+                    <th class="ps-4">Profile</th>
+                    <th>Employee Name</th>
+                    <th>Email</th>
+                    <th>Department</th>
+                    <th>Manager</th>
+                    <th>Hire Date</th>
+                    <th>Status</th>
+                    <th class="text-end pe-4">Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="employeeBody"></tbody>
+              </table>
+            </div>
+
+            <div class="table-footer">
+              <span class="text-muted small fw-medium">Showing 1 to 5 of 120 employees</span>
+              <div class="d-flex gap-1">
+                <button class="icon-btn p-1" disabled>
+                  <span class="material-symbols-outlined" style="font-size: 18px">chevron_left</span>
+                </button>
+                <button class="btn btn-primary btn-sm px-2 py-1" style="font-size: 12px">1</button>
+                <button class="btn btn-light btn-sm px-2 py-1 border text-secondary" style="font-size: 12px">2</button>
+                <button class="btn btn-light btn-sm px-2 py-1 border text-secondary" style="font-size: 12px">3</button>
+                <span class="text-muted align-self-center px-1">...</span>
+                <button class="btn btn-light btn-sm px-2 py-1 border text-secondary" style="font-size: 12px">24</button>
+                <button class="icon-btn p-1">
+                  <span class="material-symbols-outlined" style="font-size: 18px">chevron_right</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    @section Scripts
+{
+    <script src="~/js/employees/employees.js"></script>
+}
