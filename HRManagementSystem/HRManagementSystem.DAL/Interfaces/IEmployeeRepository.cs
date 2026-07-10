@@ -9,4 +9,6 @@ using System.Threading.Tasks;
 public interface IEmployeeRepository : IGenericRepository<Employee>
 {
     Task<IEnumerable<Employee>> GetManagersAsync();
+    Task<IEnumerable<Employee>> GetAllWithDetailsAsync();
+    Task<Employee?> GetByIdWithDetailsAsync(int id);
 }

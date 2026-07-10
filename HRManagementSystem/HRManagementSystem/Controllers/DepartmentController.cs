@@ -1,10 +1,10 @@
 ﻿using HRManagementSystem.BLL.DTOs;
 using HRManagementSystem.BLL.Exceptions;
+using HRManagementSystem.BLL.Interfaces;
+using HRManagementSystem.ViewModels.Department;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using HRManagementSystem.ViewModels.Department;
-using HRManagementSystem.BLL.Interfaces;
-
 
 namespace HRManagementSystem.Controllers;
 public class DepartmentController : Controller
@@ -44,7 +44,7 @@ public class DepartmentController : Controller
             Managers = managers.Select(m => new SelectListItem
             {
                 Value = m.Id.ToString(),
-                Text = m.FullName
+                Text = m.Person.FirstName
             })
         };
 
@@ -62,7 +62,7 @@ public class DepartmentController : Controller
             model.Managers = managers.Select(m => new SelectListItem
             {
                 Value = m.Id.ToString(),
-                Text = m.FullName
+                Text = m.Person.FirstName
             });
 
             return View(model);
@@ -90,7 +90,7 @@ public class DepartmentController : Controller
             model.Managers = managers.Select(m => new SelectListItem
             {
                 Value = m.Id.ToString(),
-                Text = m.FullName
+                Text = m.Person.FirstName
             });
 
             return View(model);
@@ -105,7 +105,7 @@ public class DepartmentController : Controller
         return managers.Select(m => new SelectListItem
         {
             Value = m.Id.ToString(),
-            Text = m.FullName
+            Text = m.Person.FirstName
         });
     }
 }

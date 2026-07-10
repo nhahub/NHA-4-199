@@ -45,3 +45,4 @@ namespace HRManagementSystem.DAL.Entities
     public virtual ApplicationUser? User { get; set; }
 
 }
+}

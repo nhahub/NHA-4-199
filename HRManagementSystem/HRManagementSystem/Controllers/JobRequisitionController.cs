@@ -5,7 +5,6 @@ using HRManagementSystem.ViewModels.JobRequisition;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HRManagementSystem.Controllers;
-
 public class JobRequisitionController : BaseController
 {
     private readonly IJobRequisitionService _jobService;

@@ -31,7 +31,7 @@ public class UnitOfWork : IUnitOfWork
     {
         _context = context;
 
-        Employees = new EmployeeRepository(_context);
+        //Employees = new EmployeeRepository(_context);
         Departments = new GenericRepository<Department>(_context);
         Candidates = new CandidateRepository(_context);
         Applications = new ApplicationRepository(_context);

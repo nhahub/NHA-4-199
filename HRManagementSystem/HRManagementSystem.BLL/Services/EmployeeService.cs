@@ -1,32 +1,50 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using HRManagementSystem.BLL.Interfaces;
+using HRManagementSystem.DAL.Entities;
 
-using HRManagementSystem.BLL.DTOs.Employee;
-using HRManagementSystem.BLL.Interfaces;
-using HRManagementSystem.DAL.Repositories.Interfaces;
-
-namespace HRManagementSystem.BLL.Services;
-
-public class EmployeeService : IEmployeeService
+namespace HRManagementSystem.BLL.Services
 {
-    private readonly IUnitOfWork _unitOfWork;
-
-    public EmployeeService(IUnitOfWork unitOfWork)
+    public class EmployeeService : IEmployeeService
     {
-        _unitOfWork = unitOfWork;
-    }
+        private readonly IEmployeeRepository _employeeRepository;
 
-    public async Task<IEnumerable<EmployeeLookupDto>> GetManagersAsync()
-    {
-        var employees = await _unitOfWork.Employees.GetManagersAsync();
-
-        return employees.Select(e => new EmployeeLookupDto
+        public EmployeeService(IEmployeeRepository employeeRepository)
         {
-            Id = e.Id,
-            FullName = $"{e.Person.FirstName} {e.Person.LastName}"
-        });
+            _employeeRepository = employeeRepository;
+        }
+
+        public async Task<IEnumerable<Employee>> GetAllAsync()
+        {
+            return await _employeeRepository.GetAllAsync();
+        }
+
+        public async Task<Employee?> GetByIdAsync(int id)
+        {
+            return await _employeeRepository.GetByIdAsync(id);
+        }
+
+        public async Task<IEnumerable<Employee>> GetManagersAsync()
+        {
+            return await _employeeRepository.GetManagersAsync();
+        }
+
+        public async Task AddAsync(Employee employee)
+        {
+            await _employeeRepository.AddAsync(employee);
+        }
+
+        public async Task UpdateAsync(Employee employee)
+        {
+            _employeeRepository.Update(employee);
+        }
+
+        public async Task DeleteAsync(int id)
+        {
+            var employee = await _employeeRepository.GetByIdAsync(id);
+
+            if (employee == null)
+                throw new Exception("Employee not found");
+
+            _employeeRepository.Delete(employee);
+        }
     }
 }

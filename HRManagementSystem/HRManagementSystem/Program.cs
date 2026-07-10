@@ -1,4 +1,3 @@
-using FluentValidation;
 using FluentValidation.AspNetCore;
 using HRManagementSystem.BLL.BusinessRules;
 using HRManagementSystem.BLL.BusinessRules.Interfaces;
@@ -6,11 +5,9 @@ using HRManagementSystem.BLL.Interfaces;
 using HRManagementSystem.BLL.Services;
 using HRManagementSystem.BLL.Validators;
 using HRManagementSystem.DAL.Context;
+using HRManagementSystem.DAL.Entities;
 using HRManagementSystem.DAL.Repositories;
 using HRManagementSystem.DAL.Repositories.Interfaces;
-using Microsoft.EntityFrameworkCore;
-using HRManagementSystem;
-using HRManagementSystem.DAL.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -40,8 +37,9 @@ builder.Services
         fv.RegisterValidatorsFromAssemblyContaining<CreateDepartmentValidator>();
     });
 
-builder.Services.AddScoped<IEmployeeService, EmployeeService>();
+builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 
+builder.Services.AddScoped<IEmployeeService, EmployeeService>();
 builder.Services.AddScoped<IPersonBusinessRules, PersonBusinessRules>();
 builder.Services.AddScoped<IPersonService, PersonService>();
 builder.Services.AddScoped<ICandidateBusinessRules, CandidateBusinessRules>();
@@ -52,7 +50,6 @@ builder.Services.AddScoped<IApplicationService, ApplicationService>();
 
 builder.Services.AddScoped<IJobRequisitionBusinessRules, JobRequisitionBusinessRules>();
 builder.Services.AddScoped<IJobRequisitionService, JobRequisitionService>();
-var app = builder.Build();
 
 
 builder.Services
@@ -67,7 +64,8 @@ builder.Services
         options.User.RequireUniqueEmail = true;
     })
     .AddEntityFrameworkStores<HRDbContext>()
-    .AddDefaultTokenProviders(); var app = builder.Build();
+    .AddDefaultTokenProviders();
+var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

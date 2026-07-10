@@ -1,4 +1,5 @@
 ﻿using HRManagementSystem.BLL.Interfaces;
+using HRManagementSystem.DAL.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HRManagementSystem.Web.Controllers
@@ -12,9 +13,9 @@ namespace HRManagementSystem.Web.Controllers
             _service = service;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var employees = _service.GetAll();
+            var employees = await _service.GetAllAsync();
 
             return View(employees);
         }
@@ -26,12 +27,12 @@ namespace HRManagementSystem.Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(Employee employee)
+        public async Task<IActionResult> Create(Employee employee)
         {
             if (!ModelState.IsValid)
                 return View(employee);
 
-            _service.Add(employee);
+            await _service.AddAsync(employee);
 
             return RedirectToAction(nameof(Index));
         }
